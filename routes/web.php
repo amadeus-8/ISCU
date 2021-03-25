@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::group(['domain' => 'iscu.test'], function() {
+//    Route::get('/', [AuthController::class, 'index']);
+//
+//    Route::group(['middleware' => ''], function() {
+//
+//    });
+//});
+
+Route::get('{any}', function() {
+    return view('index');
+})->where('any', '.*');
