@@ -5,11 +5,7 @@
 </template>
 
 <script>
-export default {
-name: "WaitingList"
-}
+    export default {
+        name: "WaitingList"
+    }
 </script>
-
-<style scoped>
-
-</style>

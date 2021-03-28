@@ -5,7 +5,9 @@
 @import "./base/typography",
         "./base/global";
 
-@import "./components/buttons";
+@import "./components/card",
+        "./components/preloader",
+        "./components/buttons";
 
 @import "./layout/header",
         "./layout/login",

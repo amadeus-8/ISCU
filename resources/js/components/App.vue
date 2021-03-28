@@ -11,13 +11,15 @@
                 </div>
             </div>
         </div>
+        <Preloader />
     </div>
 </template>
 
 <script>
+    import {mapGetters} from 'vuex'
     import Header from "./common/Header"
     import Sidebar from "./common/Sidebar"
-    import {mapGetters} from 'vuex'
+    import Preloader from "./common/Preloader";
 
     export default {
         name: "App",
@@ -28,12 +30,9 @@
             }
         },
         components: {
-            Header,
-            Sidebar
+            Preloader,
+            Sidebar,
+            Header
         }
     }
 </script>
-
-<style scoped>
-
-</style>

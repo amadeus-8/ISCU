@@ -23,22 +23,34 @@ const routes = [
     {
         path: '/waiting-list',
         name: 'waiting-list',
-        component: WaitingList
+        component: WaitingList,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/in-progress',
         name: 'in-progress',
-        component: InProgress
+        component: InProgress,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/confirmed',
         name: 'confirmed',
-        component: Confirmed
+        component: Confirmed,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/others',
         name: 'others',
-        component: Others
+        component: Others,
+        meta: {
+            requiresAuth: true
+        }
     }
 ]
 

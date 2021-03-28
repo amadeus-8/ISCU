@@ -1,5 +1,5 @@
 <template>
-    <header class="header">
+    <header class="header border-bottom">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center w-100">
                 <div class="logo-container">
@@ -32,7 +32,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>
