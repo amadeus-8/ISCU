@@ -3,12 +3,14 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center w-100">
                 <div class="logo-container">
-                    <img src="../../../assets/images/iitu-logo.png"
-                         class="logo"
-                         alt="logo">
+                    <router-link to="/">
+                        <img src="../../../assets/images/iitu-logo.png"
+                             class="logo"
+                             alt="logo">
+                    </router-link>
                 </div>
                 <div>
-                    <button @click="logout">Выйти</button>
+                    <button @click="logout" class="btn btn-warning">Выйти</button>
                 </div>
             </div>
         </div>

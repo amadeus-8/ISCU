@@ -19,6 +19,9 @@
                                    id="password"
                                    v-model="credentials.password">
                         </div>
+                        <div v-if="errorMessage">
+                            <p>{{errorMessage}}</p>
+                        </div>
                         <button type="submit"
                                 class="btn btn-primary w-100">Войти</button>
                     </form>
@@ -30,7 +33,7 @@
 
 <script>
     import {login} from "../../helpers/auth"
-    import {mapMutations} from 'vuex'
+    import {mapGetters, mapMutations} from 'vuex'
 
     export default {
         name: "Login",
@@ -44,7 +47,15 @@
         },
         methods: {
             ...mapMutations(['LOGIN', 'LOGIN_SUCCESS', 'LOGIN_FAILED']),
+            isCredentialsEmpty() {
+                let loginAndPassIsEmpty = this.credentials.login === '' && this.credentials.password === ''
+                let loginOrPassIsEmpty = this.credentials.login === '' || this.credentials.password === ''
+                return loginAndPassIsEmpty || loginOrPassIsEmpty
+            },
             authenticate() {
+
+                if(this.isCredentialsEmpty()) return
+
                 this.LOGIN()
 
                 login(this.credentials)
@@ -55,6 +66,12 @@
                     .catch(error => {
                         this.LOGIN_FAILED(error)
                     })
+            }
+        },
+        computed: {
+            ...mapGetters(['GET_ERROR']),
+            errorMessage() {
+                return this.GET_ERROR
             }
         }
     }

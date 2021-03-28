@@ -5,7 +5,7 @@ export function login(credentials) {
                 resolve(response.data)
             })
             .catch(error => {
-                reject("Неверрное имя пользователя или пароль")
+                reject("Неверное имя пользователя или пароль")
             })
     })
 }

@@ -1,6 +1,10 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import Login from "../components/pages/Login"
 import Home from "../components/pages/Home"
+import WaitingList from "../components/pages/WaitingList"
+import InProgress from "../components/pages/InProgress"
+import Others from "../components/pages/Others"
+import Confirmed from "../components/pages/Confirmed"
 
 const routes = [
     {
@@ -16,6 +20,26 @@ const routes = [
         name: 'login',
         component: Login
     },
+    {
+        path: '/waiting-list',
+        name: 'waiting-list',
+        component: WaitingList
+    },
+    {
+        path: '/in-progress',
+        name: 'in-progress',
+        component: InProgress
+    },
+    {
+        path: '/confirmed',
+        name: 'confirmed',
+        component: Confirmed
+    },
+    {
+        path: '/others',
+        name: 'others',
+        component: Others
+    }
 ]
 
 const router = createRouter({

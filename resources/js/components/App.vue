@@ -2,7 +2,7 @@
     <div class="h-100">
         <Header v-if="isLoggedIn" />
         <div class="container h-100">
-            <div class="main row h-100">
+            <div :class="isLoggedIn ? 'main row h-100' : 'row h-100'">
                 <div class="col-md-3" v-if="isLoggedIn">
                     <Sidebar />
                 </div>

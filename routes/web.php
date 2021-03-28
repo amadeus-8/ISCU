@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +12,6 @@ use App\Http\Controllers\AuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-//Route::group(['domain' => 'iscu.test'], function() {
-//    Route::get('/', [AuthController::class, 'index']);
-//
-//    Route::group(['middleware' => ''], function() {
-//
-//    });
-//});
 
 Route::get('{any}', function() {
     return view('index');
