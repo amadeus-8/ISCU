@@ -6,5 +6,6 @@ export default {
     currentUser: user,
     isLoggedIn: !!user,
     isLoading: false,
-    error: null
+    error: null,
+    teachers: [],
 }

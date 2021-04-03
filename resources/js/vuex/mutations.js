@@ -21,3 +21,7 @@ export const LOGOUT = (state) => {
     state.isLoggedIn = false
     state.currentUser = null
 }
+
+export const SET_TEACHERS = (state, payload) => {
+    state.teachers = payload
+}

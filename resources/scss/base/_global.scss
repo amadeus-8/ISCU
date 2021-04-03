@@ -23,6 +23,22 @@ a:hover {
     text-decoration: none;
 }
 
+a.custom-link {
+    width: 100%;
+    //border-top: 1px solid $border-gray;
+    //border-left: 1px solid $border-gray;
+    //border-right: 1px solid $border-gray;
+    display: inline-block;
+    padding: 0.5rem;
+    transition: 0.4s ease;
+}
+
+a.custom-link:hover {
+    //background-color: $base-bg-color;
+    background-color: #E4E4E4;
+    //color: #FFF;
+}
+
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
@@ -49,4 +65,19 @@ h1, h2, h3, h4, h5, h6 {
 .user-info__title {
     display: inline-block;
     margin-right: 0.5rem;
+}
+
+.board {
+    width: 100%;
+    padding: 1.5rem;
+    //border-top-left-radius: 15px;
+    //border-top-right-radius: 15px;
+    border-bottom: 1px solid $border-gray;
+}
+
+.custom-nav {
+    //padding: 0.5rem 0;
+    //border-top: 1px solid $border-gray;
+    //border-bottom: 1px solid $border-gray;
+    //border: 1px solid $border-gray;
 }

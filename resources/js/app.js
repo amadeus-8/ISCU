@@ -1,4 +1,7 @@
 require('./bootstrap')
+import 'bootstrap/dist/js/bootstrap.bundle.min'
+// import 'bootstrap/dist/js/bootstrap.esm'
+// import 'bootstrap/dist/js/bootstrap'
 import {createApp} from 'vue'
 import router from './routes/router'
 import store from './vuex/store'

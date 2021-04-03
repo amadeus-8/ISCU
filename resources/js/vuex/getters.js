@@ -13,3 +13,7 @@ export const GET_CURRENT_USER = (state) => {
 export const GET_ERROR = (state) => {
     return state.error
 }
+
+export const GET_TEACHERS = (state) => {
+    return state.teachers
+}

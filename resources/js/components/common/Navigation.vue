@@ -1,9 +1,9 @@
 <template>
-    <div class="mt-3">
+    <div class="mt-3 custom-nav">
         <div v-for="(link, index) in links"
              :key="index">
             <router-link :to="link.path"
-                         class="d-inline-block p-2 w-100">{{link.name}}</router-link>
+                         class="custom-link">{{link.name}}</router-link>
         </div>
     </div>
 </template>
