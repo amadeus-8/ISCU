@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-3 custom-nav">
+    <div class="mt-3 custom-nav" v-if="currentUser.role === 'ADVISER'">
         <div v-for="(link, index) in links"
              :key="index">
             <router-link :to="link.path"
@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex"
+
 export default {
     name: "Navigation",
     data() {
@@ -32,10 +34,12 @@ export default {
                 }
             ]
         }
+    },
+    computed: {
+        ...mapGetters(['GET_CURRENT_USER']),
+        currentUser() {
+            return this.GET_CURRENT_USER
+        }
     }
 }
 </script>
-
-<style scoped>
-
-</style>

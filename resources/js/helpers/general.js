@@ -1,4 +1,4 @@
-const initialize = () => {
+export const initialize = (store) => {
     axios.interceptors.response.use(null, (error) => {
         if(error.response.status === '401') {
             store.commit('LOGOUT')
@@ -7,6 +7,20 @@ const initialize = () => {
 
         return Promise.reject(error)
     })
+
+    // axios.interceptors.request.use((config) => {
+    //     store.commit('SET_IS_LOADING', true)
+    //     console.log("here")
+    //     return config
+    // }, () => {
+    //     store.commit('SET_IS_LOADING', false)
+    // })
+
+    if(store.getters.GET_CURRENT_USER) {
+        setAuthorization(store.getters.GET_CURRENT_USER.token);
+    }
 }
 
-export default initialize
+export const setAuthorization = (token) => {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+}

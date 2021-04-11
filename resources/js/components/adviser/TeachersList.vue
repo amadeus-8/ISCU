@@ -10,11 +10,6 @@
 
     export default {
         name: "TeachersList",
-        data() {
-            return {
-                testArray: []
-            }
-        },
         created() {
             if(this.teachers.length) {
                 return
@@ -25,15 +20,6 @@
         },
         methods: {
             ...mapActions(['getTeachers']),
-            test() {
-                axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
-                    .then(response => {
-                        this.setTest(response.data)
-                    })
-            },
-            setTest(response) {
-                this.testArray = response
-            }
         },
         computed: {
             ...mapGetters(['GET_TEACHERS']),

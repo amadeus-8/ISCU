@@ -8,17 +8,17 @@
             </div>
             <div class="user-info">
                 <p class="p-0 m-0">
-                    <span class="user-info__title">{{currentUser.firstname}}</span>
-                    <span class="user-info__title">{{currentUser.lastname}}</span>
+                    <span class="user-info__title">{{ currentUser.firstname }}</span>
+                    <span class="user-info__title">{{ currentUser.lastname }}</span>
                 </p>
-                <p class="p-0 m-0">4 курс</p>
+                <p class="p-0 m-0" v-if="currentUser.course">{{ currentUser.course }} курс</p>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters} from 'vuex'
 
 export default {
     name: "User",

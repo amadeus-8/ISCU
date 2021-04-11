@@ -11,12 +11,12 @@
             </div>
             <div>
                 <span class="d-inline-block p-2">Степень:</span>
-                <span class="d-inline-block p-2">Phd</span>
+                <span class="d-inline-block p-2">{{ teacher.academic_degree }}</span>
             </div>
-            <div>
-                <span class="d-inline-block p-2">Кафедра:</span>
-                <span class="d-inline-block p-2">МКМ</span>
-            </div>
+<!--            <div>-->
+<!--                <span class="d-inline-block p-2">Кафедра:</span>-->
+<!--                <span class="d-inline-block p-2">МКМ</span>-->
+<!--            </div>-->
             <div>
                 <span class="d-inline-block p-2">Количество студентов:</span>
                 <span class="d-inline-block p-2">100</span>

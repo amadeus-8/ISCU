@@ -6,9 +6,9 @@ import {createApp} from 'vue'
 import router from './routes/router'
 import store from './vuex/store'
 import App from './components/App'
-import initialize from './helpers/general'
+import {initialize} from './helpers/general'
 
-initialize()
+initialize(store)
 
 createApp(App).use(store).use(router).mount('#app')
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 class AuthController extends Controller
 {
     /**
@@ -26,7 +28,6 @@ class AuthController extends Controller
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-
 
         return $this->respondWithToken($token);
     }
@@ -81,6 +82,6 @@ class AuthController extends Controller
     }
 
     public function guard() {
-        return \Auth::guard('api');
+        return Auth::guard('api');
     }
 }

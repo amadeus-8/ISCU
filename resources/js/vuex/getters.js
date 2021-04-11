@@ -17,3 +17,7 @@ export const GET_ERROR = (state) => {
 export const GET_TEACHERS = (state) => {
     return state.teachers
 }
+
+export const GET_COURSES = (state) => {
+    return state.courses
+}

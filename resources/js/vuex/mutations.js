@@ -25,3 +25,11 @@ export const LOGOUT = (state) => {
 export const SET_TEACHERS = (state, payload) => {
     state.teachers = payload
 }
+
+export const SET_COURSES = (state, payload) => {
+    state.courses = payload
+}
+
+export const SET_IS_LOADING = (state, payload) => {
+    state.isLoading = payload
+}

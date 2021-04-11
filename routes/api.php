@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AuthController;
 use \App\Http\Controllers\AdviserController;
+use \App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +25,11 @@ Route::group(['prefix' => 'auth'], function ($router) {
 
 Route::group(['middleware' => 'jwt.auth'], function ($router) {
     Route::get('/teachers', [AdviserController::class, 'getTeachers']);
+    Route::get('/courses', [AdviserController::class, 'getCourses']);
+    Route::post('/student/create', [AdviserController::class, 'createStudent']);
+    Route::post('/teacher/create', [AdviserController::class, 'createTeacher']);
+    Route::post('/adviser/course/create', [AdviserController::class, 'createCourse']);
+    Route::get('/user', [AdviserController::class, 'test']);
+
+    Route::post('/student/course/create', [StudentController::class, 'createCourse']);
 });
