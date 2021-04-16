@@ -25,15 +25,37 @@ class AdviserController extends Controller
 
         foreach ($teachers as $teacher) {
             $result[] = [
-                'first_name' => $teacher->firstname,
-                'last_name' => $teacher->lastname,
-                'patronymic' => $teacher->patronymic,
-                'academic_rank' => (new AcademicRank())->getRank($teacher->id),
+                'id'              => $teacher->id,
+                'first_name'      => $teacher->firstname,
+                'last_name'       => $teacher->lastname,
+                'patronymic'      => $teacher->patronymic,
+                'academic_rank'   => (new AcademicRank())->getRank($teacher->id),
                 'academic_degree' => (new AcademicDegree())->getDegree($teacher->id)
             ];
         }
 
         return response()->json($result);
+    }
+
+    public function getTeachersById(Request $request)
+    {
+        $teachers = DB::table('users')
+            ->join('subjects', 'users.id', 'subjects.teacher_id')
+            ->where('subjects.teacher_id', $request->id)
+            ->get();
+
+        $results = [];
+
+        foreach ($teachers as $teacher) {
+            $results[] = [
+                'id'              => $teacher->id,
+                'first_name'      => $teacher->firstname,
+                'last_name'       => $teacher->lastname,
+                'patronymic'      => $teacher->patronymic,
+            ];
+        }
+
+        return response()->json($results);
     }
 
     public function getCourses()
@@ -88,7 +110,8 @@ class AdviserController extends Controller
                     'success' => true
                 ]);
             }
-        } else {
+        }
+        else {
             return $validator->errors();
         }
     }

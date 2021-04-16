@@ -35,6 +35,9 @@ export const adviserAPI = {
     getTeachers() {
         return axiosInstance.get('/teachers')
     },
+    getTeachersById(id) {
+        return axiosInstance.get(`/teachers/${id}`)
+    },
     getCourses() {
         return axiosInstance.get('/courses')
     },

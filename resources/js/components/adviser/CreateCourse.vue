@@ -29,25 +29,21 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+    import {mapActions} from "vuex";
 
-export default {
-    name: "CreateCourse",
-    data() {
-        return {
-            course: {
-                title: '',
-                teacher: '',
-                credits: 0,
+    export default {
+        name: "CreateCourse",
+        data() {
+            return {
+                course: {
+                    title: '',
+                    teacher: '',
+                    credits: 0,
+                }
             }
+        },
+        methods: {
+            ...mapActions(['createCourse'])
         }
-    },
-    methods: {
-        ...mapActions(['createCourse'])
     }
-}
 </script>
-
-<style scoped>
-
-</style>

@@ -22,7 +22,9 @@ class CreateStudentCoursesTable extends Migration
             $table->bigInteger('subject_id')->unsigned()->nullable();
             $table->foreign('subject_id')->references('id')->on('subjects');
 
-            $table->enum('status', ['in_progress', 'confirmed', '']);
+            $table->bigInteger('teacher_id')->unsigned()->nullable();
+
+            $table->enum('status', ['pending', 'confirmed', 'waiting'])->nullable();
 
             $table->timestamps();
         });

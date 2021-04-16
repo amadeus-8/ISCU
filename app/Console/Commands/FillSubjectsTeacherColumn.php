@@ -2,18 +2,23 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Student;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Console\Command;
 
-class FillCourseColumn extends Command
+class FillSubjectsTeacherColumn extends Command
 {
+    /**
+     * Constants for roles
+     */
+    const ROLE_TEACHER = 'TEACHER';
+
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'fill:course';
+    protected $signature = 'fill:subjects';
 
     /**
      * The console command description.
@@ -47,12 +52,14 @@ class FillCourseColumn extends Command
 
         echo "Script started at: $time_now \n";
 
-        $students = Student::all();
+        $teachers = User::where('role', '=', self::ROLE_TEACHER)->get();
 
         echo "Updating table... \n";
 
-        foreach ($students as $student) {
-            User::where('id', $student->user_id)->update(['course' => $student->course]);
+        $subject_id = 1;
+        foreach ($teachers as $teacher) {
+            Subject::where('id', $subject_id)->update(['teacher_id' => $teacher->id]);
+            $subject_id++;
         }
 
         $end_time = time();

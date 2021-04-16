@@ -1,4 +1,5 @@
 import {adviserAPI} from "../api/api";
+import {comment} from "postcss";
 
 export const getTeachers = ({commit}) => {
     adviserAPI.getTeachers().then(response => {
@@ -27,5 +28,11 @@ export const createTeacher = ({}, teacher) => {
 export const createCourse = ({}, course) => {
     adviserAPI.createCourse(course).then((response) => {
         alert(response.data.success)
+    })
+}
+
+export const getTeachersById = ({commit}, id) => {
+    adviserAPI.getTeachersById(id).then(response => {
+        commit('SET_TEACHERS', response.data)
     })
 }

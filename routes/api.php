@@ -16,15 +16,16 @@ use \App\Http\Controllers\StudentController;
 |
 */
 
-Route::group(['prefix' => 'auth'], function ($router) {
+Route::group(['prefix' => 'auth'], function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
 });
 
-Route::group(['middleware' => 'jwt.auth'], function ($router) {
+Route::group(['middleware' => 'jwt.auth'], function () {
     Route::get('/teachers', [AdviserController::class, 'getTeachers']);
+    Route::get('/teachers/{id}', [AdviserController::class, 'getTeachersById']);
     Route::get('/courses', [AdviserController::class, 'getCourses']);
     Route::post('/student/create', [AdviserController::class, 'createStudent']);
     Route::post('/teacher/create', [AdviserController::class, 'createTeacher']);
