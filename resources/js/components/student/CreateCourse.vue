@@ -16,10 +16,11 @@
                         :value="teacher.id">{{ teacher.first_name + ' ' + teacher.last_name }}</option>
             </select>
         </div>
-        <div v-for="(course, index) in courses"
-             :key="index"
-             v-if="course.id == course.course_id">
-            <span>Количество кредитов: {{ course.credits }}</span>
+        <div class="mt-3">
+            <button class="btn btn-primary me-2"
+                    @click="createStudentCourse({course, type: 'save'})">Сохранить</button>
+            <button class="btn btn-primary"
+                    @click="createStudentCourse({course, type: 'submit'})">Отправить</button>
         </div>
     </div>
 </template>
@@ -32,7 +33,7 @@ import {mapActions, mapGetters} from "vuex"
         data() {
             return {
                 course: {
-                    user_id: '',
+                    user_id: JSON.parse(localStorage.getItem('user'))['id'],
                     course_id: '',
                     teacher_id: '',
                 }
@@ -45,10 +46,10 @@ import {mapActions, mapGetters} from "vuex"
             },
             courses() {
                 return this.GET_COURSES
-            }
+            },
         },
         methods: {
-            ...mapActions(['getTeachers', 'getCourses', 'getTeachersById'])
+            ...mapActions(['getTeachers', 'getCourses', 'getTeachersById', 'createStudentCourse'])
         },
         watch: {
             'course.course_id': function () {

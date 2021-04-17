@@ -37,10 +37,12 @@ class CreateStudentCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::table('student_courses', function (Blueprint $table) {
-           $table->dropForeign('student_courses_user_id_foreign');
-           $table->dropForeign('student_courese_subject_id_foreign');
-        });
+//        Schema::table('student_courses', function (Blueprint $table) {
+////           $table->dropForeign('student_courses_user_id_foreign');
+//           $table->dropForeign(['user_id']);
+//           $table->dropForeign(['subject_id']);
+////           $table->dropForeign('student_courses_subject_id_foreign');
+//        });
         Schema::dropIfExists('student_courses');
     }
 }

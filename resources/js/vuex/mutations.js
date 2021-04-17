@@ -33,3 +33,7 @@ export const SET_COURSES = (state, payload) => {
 export const SET_IS_LOADING = (state, payload) => {
     state.isLoading = payload
 }
+
+export const SET_STUDENT_COURSES = (state, payload) => {
+    state.student_courses = payload
+}

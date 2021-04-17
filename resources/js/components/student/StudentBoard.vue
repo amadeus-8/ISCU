@@ -24,7 +24,7 @@
 
 <script>
 import Courses from "../common/Courses"
-import StudentPlan from "./StudentPlan";
+import StudentPlan from "./StudentPlan"
 
 export default {
     name: "StudentBoard",

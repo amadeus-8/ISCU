@@ -3,10 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Models\Subject;
+use App\Models\TeacherSubject;
 use App\Models\User;
 use Illuminate\Console\Command;
 
-class FillSubjectsTeacherColumn extends Command
+class FillSubjectsAndTeachers extends Command
 {
     /**
      * Constants for roles
@@ -52,14 +53,32 @@ class FillSubjectsTeacherColumn extends Command
 
         echo "Script started at: $time_now \n";
 
-        $teachers = User::where('role', '=', self::ROLE_TEACHER)->get();
+        $teachers = User::where('role', self::ROLE_TEACHER)->get();
+        $subjects = Subject::all();
 
         echo "Updating table... \n";
 
+//        $subject_id = 1;
+//        $subjects_count = Subject::all()->count();
+
+        $i = 0;
+        while($i < 2) {
+            foreach ($subjects as $subject) {
+                $teacher_subject = new TeacherSubject();
+                $teacher_subject->subject_id = $subject->id;
+                $teacher_subject->save();
+            }
+            $i++;
+        }
+
+        $subjects_count = TeacherSubject::all()->count();
         $subject_id = 1;
-        foreach ($teachers as $teacher) {
-            Subject::where('id', $subject_id)->update(['teacher_id' => $teacher->id]);
-            $subject_id++;
+
+        while ($subject_id < $subjects_count) {
+            foreach ($teachers as $teacher) {
+                TeacherSubject::where('subject_id', $subject_id)->update(['teacher_id' => $teacher->id]);
+                $subject_id++;
+            }
         }
 
         $end_time = time();

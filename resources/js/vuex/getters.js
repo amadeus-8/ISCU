@@ -21,3 +21,7 @@ export const GET_TEACHERS = (state) => {
 export const GET_COURSES = (state) => {
     return state.courses
 }
+
+export const GET_STUDENT_COURSES = (state) => {
+    return state.student_courses
+}

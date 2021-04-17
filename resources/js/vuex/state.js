@@ -9,4 +9,5 @@ export default {
     error: null,
     teachers: [],
     courses: [],
+    student_courses: [],
 }

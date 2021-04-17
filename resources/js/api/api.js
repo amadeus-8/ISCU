@@ -53,7 +53,7 @@ export const adviserAPI = {
 }
 
 export const studentAPI = {
-    createCourse(course) {
-        return axiosInstance.get('/student/course/create', course)
+    createCourse({course, type}) {
+        return axiosInstance.post('/student/course/create',{course, type})
     }
 }

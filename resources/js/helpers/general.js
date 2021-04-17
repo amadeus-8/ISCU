@@ -8,14 +8,6 @@ export const initialize = (store) => {
         return Promise.reject(error)
     })
 
-    // axios.interceptors.request.use((config) => {
-    //     store.commit('SET_IS_LOADING', true)
-    //     console.log("here")
-    //     return config
-    // }, () => {
-    //     store.commit('SET_IS_LOADING', false)
-    // })
-
     if(store.getters.GET_CURRENT_USER) {
         setAuthorization(store.getters.GET_CURRENT_USER.token);
     }

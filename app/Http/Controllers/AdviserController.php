@@ -40,8 +40,9 @@ class AdviserController extends Controller
     public function getTeachersById(Request $request)
     {
         $teachers = DB::table('users')
-            ->join('subjects', 'users.id', 'subjects.teacher_id')
-            ->where('subjects.teacher_id', $request->id)
+            ->join('teacher_subjects', 'users.id', 'teacher_subjects.teacher_id')
+            ->where('teacher_subjects.subject_id', $request->id)
+            ->groupBy('teacher_subjects.teacher_id')
             ->get();
 
         $results = [];
@@ -65,16 +66,16 @@ class AdviserController extends Controller
 
         $results = [];
 
-        foreach ($courses as $cours) {
+        foreach ($courses as $course) {
             $results[] = [
-                'id' => $cours->id,
-                'name' => $cours->title_ru,
-                'description' => $cours->description_ru,
-                'department' => (new Department())->getDepartment($cours->department_id),
-                'credits' => $cours->ects_credits,
-                'lection' => $cours->lection,
-                'lab' => $cours->lab,
-                'practice' => $cours->practice,
+                'id' => $course->id,
+                'name' => $course->title_ru,
+                'description' => $course->description_ru,
+                'department' => (new Department())->getDepartment($course->department_id),
+                'credits' => $course->ects_credits,
+                'lection' => $course->lection,
+                'lab' => $course->lab,
+                'practice' => $course->practice,
             ];
         }
 
