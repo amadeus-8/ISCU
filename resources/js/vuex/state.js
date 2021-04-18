@@ -10,4 +10,7 @@ export default {
     teachers: [],
     courses: [],
     student_courses: [],
+    pending_students: [],
+    confirmed_students: [],
+    waiting_students: [],
 }

@@ -1,32 +1,39 @@
 <template>
     <div class="grid">
-        <StudentCard v-for="user in testArray" :user="user"/>
+        <StudentCard v-for="student in students" :student="student"/>
     </div>
 </template>
 
 <script>
 import StudentCard from "./StudentCard"
+import {mapActions, mapGetters} from "vuex"
 
 export default {
     name: "StudentList",
-
-    data() {
-        return {
-            testArray: []
+    props: {
+        type: String
+    },
+    created() {
+        if(!this.students.length) {
+            this.getStudentsList(this.type)
         }
     },
-    mounted() {
-        this.test()
-    },
     methods: {
-        test() {
-            axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
-                .then(response => {
-                    this.setTest(response.data)
-                })
-        },
-        setTest(response) {
-            this.testArray = response
+        ...mapActions(['getStudentsList']),
+    },
+    computed: {
+        ...mapGetters(['GET_PENDING_STUDENTS', 'GET_CONFIRMED_STUDENTS', 'GET_WAITING_STUDENTS']),
+        students() {
+            switch (this.type) {
+                case 'pending':
+                    return this.GET_PENDING_STUDENTS
+                case 'waiting':
+                    return this.GET_WAITING_STUDENTS
+                case 'confirmed':
+                    return this.GET_CONFIRMED_STUDENTS
+                default:
+                    break
+            }
         }
     },
     components: {

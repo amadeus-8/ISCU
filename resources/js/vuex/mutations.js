@@ -37,3 +37,15 @@ export const SET_IS_LOADING = (state, payload) => {
 export const SET_STUDENT_COURSES = (state, payload) => {
     state.student_courses = payload
 }
+
+export const SET_PENDING_STUDENTS = (state, payload) => {
+    state.pending_students = payload
+}
+
+export const SET_WAITING_STUDENTS = (state, payload) => {
+    state.waiting_students = payload
+}
+
+export const SET_CONFIRMED_STUDENTS = (state, payload) => {
+    state.confirmed_students = payload
+}

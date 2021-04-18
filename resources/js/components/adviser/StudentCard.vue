@@ -6,19 +6,15 @@
         <div>
             <div>
                 <span class="d-inline-block p-2">Название предмета:</span>
-                <span class="d-inline-block p-2">Physics</span>
+                <span class="d-inline-block p-2">{{ student.course }}</span>
             </div>
             <div>
                 <span class="d-inline-block p-2">Количество кредитов</span>
-                <span class="d-inline-block p-2">2</span>
+                <span class="d-inline-block p-2">{{ student.credits }}</span>
             </div>
             <div>
                 <span class="d-inline-block p-2">Преподаватель:</span>
-                <span class="d-inline-block p-2"></span>
-            </div>
-            <div>
-                <span class="d-inline-block p-2">Уровень:</span>
-                <span class="d-inline-block p-2"></span>
+                <span class="d-inline-block p-2">{{ student.teacher }}</span>
             </div>
             <div>
                 <span class="d-inline-block p-2">Количество студентов:</span>
@@ -32,11 +28,7 @@
 export default {
     name: "StudentCard",
     props: {
-        user: Object
+        student: Object
     }
 }
 </script>
-
-<style scoped>
-
-</style>

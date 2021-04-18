@@ -49,6 +49,9 @@ export const adviserAPI = {
     },
     createCourse(course) {
         return axiosInstance.post('/adviser/course/create', course)
+    },
+    getStudentsList(type) {
+        return axiosInstance.get(`/students/${type}`)
     }
 }
 

@@ -1,11 +1,13 @@
 <template>
     <div class="card h-100 p-3">
-        <h4>In progress</h4>
+        <StudentList :type="'pending'" />
     </div>
 </template>
 
 <script>
+    import StudentList from "../adviser/StudentList";
     export default {
-        name: "InProgress"
+        name: "InProgress",
+        components: {StudentList}
     }
 </script>

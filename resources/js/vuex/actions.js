@@ -47,3 +47,21 @@ export const getStudentCourses = ({commit}, id) => {
         commit('SET_STUDENT_COURSES', response.data)
     })
 }
+
+export const getStudentsList = ({commit}, type) => {
+    adviserAPI.getStudentsList(type).then((response) => {
+        switch (type) {
+            case "pending":
+                commit('SET_PENDING_STUDENTS', response.data)
+                break
+            case "confirmed":
+                commit('SET_CONFIRMED_STUDENTS', response.data)
+                break
+            case "waiting":
+                commit('SET_WAITING_STUDENTS', response.data)
+                break
+            default:
+                break
+        }
+    })
+}

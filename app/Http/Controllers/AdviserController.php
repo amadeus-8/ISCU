@@ -174,6 +174,31 @@ class AdviserController extends Controller
         }
     }
 
+    public function getStudentsList(Request $request)
+    {
+        $type = $request->type;
+
+        $students = DB::table('student_courses')
+            ->join('subjects', 'student_courses.subject_id', 'subjects.id')
+            ->join('users', 'users.id', 'student_courses.teacher_id')
+            ->where('status', $type)
+            ->get();
+
+        $results = [];
+
+        foreach ($students as $student) {
+            $results[] = [
+                'id' => $student->id,
+                'teacher' => $student->firstname . " " . $student->lastname,
+                'course' => $student->title_ru,
+                'credits' => $student->ects_credits,
+                'status' => $student->status,
+            ];
+        }
+
+        return response()->json($results);
+    }
+
     public function test()
     {
         return (new User())->getUser();

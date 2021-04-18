@@ -25,3 +25,15 @@ export const GET_COURSES = (state) => {
 export const GET_STUDENT_COURSES = (state) => {
     return state.student_courses
 }
+
+export const GET_PENDING_STUDENTS = (state) => {
+    return state.pending_students
+}
+
+export const GET_CONFIRMED_STUDENTS = (state) => {
+    return state.confirmed_students
+}
+
+export const GET_WAITING_STUDENTS = (state) => {
+    return state.waiting_students
+}
