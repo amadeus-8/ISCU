@@ -16,6 +16,7 @@
             </div>
         </div>
         <div class="p-4">
+            <StudentCoursesList v-if="viewType === 'plan'" />
             <StudentPlan v-if="viewType === 'plan'" />
             <Courses v-if="viewType === 'courses'" />
         </div>
@@ -25,6 +26,7 @@
 <script>
 import Courses from "../common/Courses"
 import StudentPlan from "./StudentPlan"
+import StudentCoursesList from "./StudentCoursesList";
 
 export default {
     name: "StudentBoard",
@@ -34,6 +36,7 @@ export default {
         }
     },
     components: {
+        StudentCoursesList,
         StudentPlan,
         Courses
     }

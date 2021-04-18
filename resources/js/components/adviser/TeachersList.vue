@@ -1,6 +1,7 @@
 <template>
     <div class="grid">
-        <TeacherCard v-for="teacher in teachers" :teacher="teacher"/>
+        <TeacherCard v-for="teacher in teachers"
+                     :teacher="teacher"/>
     </div>
 </template>
 
@@ -11,10 +12,7 @@
     export default {
         name: "TeachersList",
         created() {
-            if(this.teachers.length) {
-                return
-            }
-            else {
+            if(!this.teachers.length) {
                 this.getTeachers()
             }
         },

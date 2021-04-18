@@ -36,8 +36,14 @@ export const getTeachersById = ({commit}, id) => {
     })
 }
 
-export const createStudentCourse = ({commit}, {course, type}) => {
+export const createStudentCourse = ({}, {course, type}) => {
     studentAPI.createCourse({course, type}).then(response => {
+        alert(response.data.success)
+    })
+}
+
+export const getStudentCourses = ({commit}, id) => {
+    studentAPI.getStudentCourses(id).then(response => {
         commit('SET_STUDENT_COURSES', response.data)
     })
 }
