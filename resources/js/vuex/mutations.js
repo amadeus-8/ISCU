@@ -49,3 +49,8 @@ export const SET_WAITING_STUDENTS = (state, payload) => {
 export const SET_CONFIRMED_STUDENTS = (state, payload) => {
     state.confirmed_students = payload
 }
+
+export const SET_USER = (state, payload) => {
+    state.currentUser = Object.assign({}, payload.user, {token: payload.access_token})
+    localStorage.setItem('user', JSON.stringify(state.currentUser))
+}

@@ -1,12 +1,18 @@
-import {adviserAPI, studentAPI} from "../api/api";
+import {adviserAPI, authAPI, studentAPI} from "../api/api"
 
-export const getTeachers = ({commit}) => {
+export const login = ({ commit }, credentials) => {
+    authAPI.login(credentials).then(response => {
+        commit('SET_USER', response.data)
+    })
+}
+
+export const getTeachers = ({ commit }) => {
     adviserAPI.getTeachers().then(response => {
         commit('SET_TEACHERS', response.data)
     })
 }
 
-export const getCourses = ({commit}) => {
+export const getCourses = ({ commit }) => {
     adviserAPI.getCourses().then(response => {
         commit('SET_COURSES', response.data)
     })
@@ -30,15 +36,15 @@ export const createCourse = ({}, course) => {
     })
 }
 
-export const getTeachersById = ({commit}, id) => {
+export const getTeachersById = ({ commit }, id) => {
     adviserAPI.getTeachersById(id).then(response => {
         commit('SET_TEACHERS', response.data)
     })
 }
 
-export const createStudentCourse = ({}, {course, type}) => {
-    studentAPI.createCourse({course, type}).then(response => {
-        alert(response.data.success)
+export const createStudentCourse = ({}, { course, type }) => {
+    studentAPI.createCourse({ course, type }).then(response => {
+        location.reload()
     })
 }
 

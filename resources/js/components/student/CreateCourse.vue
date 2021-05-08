@@ -1,6 +1,7 @@
 <template>
     <div>
         <div class="mt-3">
+            <div>Название курса: </div>
             <select class="form-select"
                     v-model="course.course_id">
                 <option v-for="(course, index) in courses"
@@ -8,7 +9,9 @@
                         :value="course.id">{{ course.name }}</option>
             </select>
         </div>
-        <div class="mt-3">
+        <div class="mt-3"
+             v-show="course.course_id">
+            <div>Учитель: </div>
             <select class="form-select"
                     v-model="course.teacher_id">
                 <option v-for="(teacher, index) in teachers"

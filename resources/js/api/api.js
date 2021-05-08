@@ -4,32 +4,46 @@ const prodURL = ''
 const devURL = 'http://127.0.0.1:8000/api'
 const baseURL = process.env.NODE_ENV === 'production' ? prodURL : devURL
 
-// const user = localStorage.getItem('user')
-// const token = JSON.parse(user).token
-
-const initialize = () => {
-    const user = localStorage.getItem('user')
-
-    if(user !== null && user !== '') {
-        const token = JSON.parse(user).token
-        return setAuthorization(token)
-    }
-}
-
-const setAuthorization = token => {
-    return {
-        'Authorization': `Bearer ${token}`
-    }
-}
-
-
 const axiosInstance = axios.create({
-    baseURL: baseURL,
-    // headers: {
-    //     'Authorization': `Bearer ${token}`
-    // },
-    headers: initialize()
+    baseURL,
 })
+
+axiosInstance.interceptors.request.use(
+    async (config) => {
+
+        const user = localStorage.getItem('user')
+        const currentUser = JSON.parse(user)
+        const token = currentUser.token
+
+        config.headers.Authorization = `Bearer ${token}`
+
+        return config
+    },
+    (error) => {
+        return Promise.reject(error)
+    }
+)
+
+axiosInstance.interceptors.response.use(
+    response => response,
+    error => {
+        if(error.response.status === 401) {
+            localStorage.removeItem('user')
+            this.$router.push({name: 'login'})
+        }
+})
+
+export const authAPI = {
+    login(credentials) {
+        return axiosInstance.post('/auth/login', credentials)
+    },
+    logout() {
+        return axiosInstance.post('/auth/logout', {})
+    },
+    refreshToken() {
+        return axiosInstance.post('/auth/refresh', {})
+    },
+}
 
 export const adviserAPI = {
     getTeachers() {
@@ -57,7 +71,7 @@ export const adviserAPI = {
 
 export const studentAPI = {
     createCourse({course, type}) {
-        return axiosInstance.post('/student/course/create',{course, type})
+        return axiosInstance.post('/student/course/create', {course, type})
     },
     getStudentCourses(id) {
         return axiosInstance.get(`/student/courses/${id}`)
