@@ -6,6 +6,8 @@ const prodURL = 'https://iitu-iscu.herokuapp.com/api'
 const devURL = 'http://127.0.0.1:8000/api'
 const baseURL = process.env.NODE_ENV === 'production' ? prodURL : devURL
 
+console.log(baseURL)
+
 const axiosInstance = axios.create({
     baseURL,
 })
