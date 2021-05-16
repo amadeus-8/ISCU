@@ -3,7 +3,7 @@
         <div class="ccl-12 col-sm-10 col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <form @submit.prevent="authenticate">
+                    <form @submit.prevent="authenticate" method="post">
                         @csrf
                         <div class="mb-3">
                             <label for="login" class="form-label">Имя пользователя</label>
