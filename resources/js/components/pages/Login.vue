@@ -3,8 +3,7 @@
         <div class="ccl-12 col-sm-10 col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <form @submit.prevent="authenticate" method="post">
-                        @csrf
+                    <div>
                         <div class="mb-3">
                             <label for="login" class="form-label">Имя пользователя</label>
                             <input type="text"
@@ -24,8 +23,9 @@
                             <p>{{errorMessage}}</p>
                         </div>
                         <button type="submit"
+                                @click="authenticate"
                                 class="btn btn-primary w-100">Войти</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
