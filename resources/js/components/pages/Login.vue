@@ -32,8 +32,8 @@
 </template>
 
 <script>
-    import {login} from "../../helpers/auth"
-    import {mapGetters, mapMutations} from 'vuex'
+    // import {login} from "../../helpers/auth"
+    import {mapActions, mapGetters, mapMutations} from 'vuex'
 
     export default {
         name: "Login",
@@ -47,6 +47,7 @@
         },
         methods: {
             ...mapMutations(['LOGIN', 'LOGIN_SUCCESS', 'LOGIN_FAILED']),
+            ...mapActions(['login']),
             isCredentialsEmpty() {
                 let loginAndPassIsEmpty = this.credentials.login === '' && this.credentials.password === ''
                 let loginOrPassIsEmpty = this.credentials.login === '' || this.credentials.password === ''
@@ -56,17 +57,23 @@
 
                 if(this.isCredentialsEmpty()) return
 
-                this.LOGIN()
+                // this.LOGIN()
 
-                login(this.credentials)
-                    .then(response => {
-                        this.LOGIN_SUCCESS(response)
-                        this.$router.push({name: 'home'})
-                    })
-                    .catch(error => {
-                        this.LOGIN_FAILED(error)
-                    })
+                this.login(this.credentials)
+
+
+                // login(this.credentials)
+                //     .then(response => {
+                //         this.LOGIN_SUCCESS(response)
+                //         this.$router.push({name: 'home'})
+                //     })
+                //     .catch(error => {
+                //         this.LOGIN_FAILED(error)
+                //     })
             }
+        },
+        updated() {
+
         },
         computed: {
             ...mapGetters(['GET_ERROR']),

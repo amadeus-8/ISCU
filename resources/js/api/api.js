@@ -1,4 +1,6 @@
 import axios from "axios"
+import store from '../vuex/store'
+import router from '../routes/router'
 
 const prodURL = ''
 const devURL = 'http://127.0.0.1:8000/api'
@@ -9,14 +11,18 @@ const axiosInstance = axios.create({
 })
 
 axiosInstance.interceptors.request.use(
-    async (config) => {
+    (config) => {
+        store.commit('SET_LOADING', true)
 
-        const user = localStorage.getItem('user')
-        const currentUser = JSON.parse(user)
-        const token = currentUser.token
+        if (!config.url.includes('login')) {
+            const user = localStorage.getItem('user')
+            const currentUser = JSON.parse(user)
+            const token = currentUser.token
 
-        config.headers.Authorization = `Bearer ${token}`
+            config.headers.Authorization = `Bearer ${token}`
 
+            return config
+        }
         return config
     },
     (error) => {
@@ -25,13 +31,25 @@ axiosInstance.interceptors.request.use(
 )
 
 axiosInstance.interceptors.response.use(
-    response => response,
-    error => {
-        if(error.response.status === 401) {
-            localStorage.removeItem('user')
-            this.$router.push({name: 'login'})
+    (config) => {
+        store.commit('SET_LOADING', false)
+
+        // console.log(config)
+        //
+        if (config.request.responseURL.includes('login')) {
+            router.push({name: 'home'})
+
+            return config
         }
-})
+
+        return config;
+    },
+    (error) => {
+        if (error.response.status === 401) {
+            localStorage.removeItem('user')
+            router.replace({name: 'login'})
+        }
+    })
 
 export const authAPI = {
     login(credentials) {

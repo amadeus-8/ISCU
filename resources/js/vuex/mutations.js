@@ -1,3 +1,5 @@
+import router from "../routes/router";
+
 export const LOGIN = (state) => {
     state.isLoading = true
     state.error = null
@@ -30,7 +32,7 @@ export const SET_COURSES = (state, payload) => {
     state.courses = payload
 }
 
-export const SET_IS_LOADING = (state, payload) => {
+export const SET_LOADING = (state, payload) => {
     state.isLoading = payload
 }
 
@@ -54,3 +56,4 @@ export const SET_USER = (state, payload) => {
     state.currentUser = Object.assign({}, payload.user, {token: payload.access_token})
     localStorage.setItem('user', JSON.stringify(state.currentUser))
 }
+
