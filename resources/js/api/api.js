@@ -2,7 +2,7 @@ import axios from "axios"
 import store from '../vuex/store'
 import router from '../routes/router'
 
-const prodURL = ''
+const prodURL = 'https://iitu-iscu.herokuapp.com/api'
 const devURL = 'http://127.0.0.1:8000/api'
 const baseURL = process.env.NODE_ENV === 'production' ? prodURL : devURL
 
