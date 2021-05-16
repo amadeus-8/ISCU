@@ -34,8 +34,6 @@ axiosInstance.interceptors.response.use(
     (config) => {
         store.commit('SET_LOADING', false)
 
-        // console.log(config)
-        //
         if (config.request.responseURL.includes('login')) {
             router.push({name: 'home'})
 

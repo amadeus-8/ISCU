@@ -4,6 +4,7 @@
             <div class="card">
                 <div class="card-body">
                     <form @submit.prevent="authenticate">
+                        @csrf
                         <div class="mb-3">
                             <label for="login" class="form-label">Имя пользователя</label>
                             <input type="text"
