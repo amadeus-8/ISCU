@@ -3,7 +3,7 @@
         <div class="ccl-12 col-sm-10 col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <div>
+                    <form @prevent.submit="authenticate" method="post">
                         <div class="mb-3">
                             <label for="login" class="form-label">Имя пользователя</label>
                             <input type="text"
@@ -25,7 +25,7 @@
                         <button type="submit"
                                 @click="authenticate"
                                 class="btn btn-primary w-100">Войти</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
