@@ -56,6 +56,8 @@
             },
             authenticate() {
 
+                console.log("inside auth")
+
                 if(this.isCredentialsEmpty()) return
 
                 // this.LOGIN()
