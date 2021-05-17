@@ -1,9 +1,7 @@
 import {adviserAPI, authAPI, studentAPI} from "../api/api"
 
 export const login = ({ commit }, credentials) => {
-    console.log('inside login action')
     authAPI.login(credentials).then(response => {
-        console.log('inside login promise')
         commit('SET_USER', response.data)
     })
 }

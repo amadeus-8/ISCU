@@ -36,11 +36,10 @@ axiosInstance.interceptors.response.use(
     (config) => {
         store.commit('SET_LOADING', false)
 
-        if (config.request.responseURL.includes('login')) {
-            router.push({name: 'home'})
-
-            return config
-        }
+        // if (config.request.responseURL.includes('login')) {
+        //     router.push({name: 'home'})
+        //     return config
+        // }
 
         return config;
     },
@@ -53,7 +52,6 @@ axiosInstance.interceptors.response.use(
 
 export const authAPI = {
     login(credentials) {
-        console.log('inside auth api')
         return axiosInstance.post('/auth/login', credentials)
     },
     logout() {
