@@ -78,3 +78,7 @@ export const getStudentInfo = ({ commit }, { type, id}) => {
         commit('SET_STUDENT_INFO', response.data)
     })
 }
+
+export const downloadPDF = ({}, { type, id}) => {
+    adviserAPI.downloadPDF({ type, id })
+}

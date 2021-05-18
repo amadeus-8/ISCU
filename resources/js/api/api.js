@@ -86,6 +86,9 @@ export const adviserAPI = {
     },
     getStudentInfo({ type, id }) {
         return axiosInstance.get(`/students/${type}/${id}`)
+    },
+    downloadPDF({ type, id}) {
+        return axiosInstance.get(`/student-courses/pdf/${type}/${id}`)
     }
 }
 

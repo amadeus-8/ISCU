@@ -8,6 +8,12 @@
                             :course="course"
                             :key="index"/>
         </div>
+        <div class="mt-3 d-flex justify-content-end">
+            <button @click="downloadPDF({ type: $route.name.substring(0, $route.name.search('-')), id: $route.params['id'] })"
+                    class="btn btn-primary">Скачать pdf</button>
+<!--            <a :href="downloadPdfUri"-->
+<!--                    class="btn btn-primary">Скачать pdf</a>-->
+        </div>
     </div>
 </template>
 
@@ -18,7 +24,13 @@ import StudentCourses from "./StudentCourses";
 export default {
     name: "StudentInfo",
     components: {StudentCourses},
+    data() {
+        return {
+            downloadPdfUri: '/student-courses/pdf' + this.$route.fullPath
+        }
+    },
     mounted() {
+        console.log(this.$route)
         this.getStudentInfo({ type: this.$route.name.substring(0, this.$route.name.search('-')), id: this.$route.params['id'] })
     },
     computed: {
@@ -28,7 +40,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['getStudentInfo'])
+        ...mapActions(['getStudentInfo','downloadPDF'])
     }
 }
 </script>

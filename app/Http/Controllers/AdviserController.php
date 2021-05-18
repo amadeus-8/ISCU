@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class AdviserController extends Controller
 {
@@ -238,6 +239,49 @@ class AdviserController extends Controller
         ];
 
         return response()->json($response);
+    }
+
+    public function createPDF(Request $request) {
+
+        $type = $request->type;
+
+        $student_id = $request->id;
+
+        $student = DB::table('users')
+            ->where('id', $student_id)
+            ->first();
+
+        $courses = DB::table('student_courses')
+            ->join('subjects', 'student_courses.subject_id', 'subjects.id')
+            ->join('users', 'users.id', 'student_courses.teacher_id')
+            ->where('status', $type)
+            ->where('student_courses.user_id', $student_id)
+            ->get();
+
+        $results = [];
+
+        foreach ($courses as $course) {
+            $results[] = [
+                'id' => $course->id,
+                'teacher' => $course->firstname . " " . $course->lastname,
+                'name' => $course->title_ru,
+                'credits' => $course->ects_credits,
+                'status' => $course->status,
+            ];
+        }
+
+        $data = [
+            'firstname' => $student->firstname,
+            'lastname' => $student->lastname,
+            'courses' => $results
+        ];
+
+        // share data to view
+        view()->share('data', $data);
+        $pdf = PDF::loadView('pdf_view', $data)->setPaper('a4', 'portrait');
+
+        // download PDF file with download method
+        return $pdf->download('pdf_file.pdf');
     }
 
     public function test()
