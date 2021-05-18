@@ -5,6 +5,7 @@ import WaitingList from "../components/pages/WaitingList"
 import InProgress from "../components/pages/InProgress"
 import Others from "../components/pages/Others"
 import Confirmed from "../components/pages/Confirmed"
+import StudentInfo from "../components/adviser/StudentInfo";
 
 const routes = [
     {
@@ -21,17 +22,33 @@ const routes = [
         component: Login
     },
     {
-        path: '/waiting-list',
+        path: '/waiting',
         name: 'waiting-list',
         component: WaitingList,
+        meta: {
+            requiresAuth: true
+        },
+    },
+    {
+        path: '/waiting/:id',
+        name: 'waiting-student',
+        component: StudentInfo,
         meta: {
             requiresAuth: true
         }
     },
     {
-        path: '/in-progress',
-        name: 'in-progress',
+        path: '/pending',
+        name: 'pending',
         component: InProgress,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/pending/:id',
+        name: 'pending-student',
+        component: StudentInfo,
         meta: {
             requiresAuth: true
         }

@@ -83,6 +83,9 @@ export const adviserAPI = {
     },
     getStudentsList(type) {
         return axiosInstance.get(`/students/${type}`)
+    },
+    getStudentInfo({ type, id }) {
+        return axiosInstance.get(`/students/${type}/${id}`)
     }
 }
 

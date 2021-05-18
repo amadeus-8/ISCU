@@ -1,24 +1,10 @@
 <template>
-    <div class="card-1">
-<!--        <div class="d-flex justify-content-end w-100">-->
-<!--            X-->
-<!--        </div>-->
+    <div class="card-1"
+         @click="openStudentCard(student.id)">
         <div>
             <div>
-                <span class="d-inline-block p-2">Название предмета:</span>
-                <span class="d-inline-block p-2">{{ student.course }}</span>
-            </div>
-            <div>
-                <span class="d-inline-block p-2">Количество кредитов</span>
-                <span class="d-inline-block p-2">{{ student.credits }}</span>
-            </div>
-            <div>
-                <span class="d-inline-block p-2">Преподаватель:</span>
-                <span class="d-inline-block p-2">{{ student.teacher }}</span>
-            </div>
-            <div>
-                <span class="d-inline-block p-2">Количество студентов:</span>
-                <span class="d-inline-block p-2"></span>
+                <span class="d-inline-block p-2">ФИО студента:</span>
+                <span class="d-inline-block p-2">{{ student.firstname + " " + student.lastname }}</span>
             </div>
         </div>
     </div>
@@ -29,6 +15,11 @@ export default {
     name: "StudentCard",
     props: {
         student: Object
+    },
+    methods: {
+        openStudentCard(id) {
+            this.$router.push({ name: this.$route.path.substr(1, this.$route.path.length) + '-student', params: { id: id }})
+        }
     }
 }
 </script>

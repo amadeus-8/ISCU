@@ -37,3 +37,7 @@ export const GET_CONFIRMED_STUDENTS = (state) => {
 export const GET_WAITING_STUDENTS = (state) => {
     return state.waiting_students
 }
+
+export const GET_STUDENT_INFO = (state) => {
+    return state.studentInfo
+}

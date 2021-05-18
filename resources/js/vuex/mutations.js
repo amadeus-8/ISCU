@@ -57,3 +57,6 @@ export const SET_USER = (state, payload) => {
     localStorage.setItem('user', JSON.stringify(state.currentUser))
 }
 
+export const SET_STUDENT_INFO = (state, payload) => {
+    state.studentInfo = payload
+}

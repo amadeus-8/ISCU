@@ -71,3 +71,9 @@ export const getStudentsList = ({commit}, type) => {
         }
     })
 }
+
+export const getStudentInfo = ({ commit }, { type, id}) => {
+    adviserAPI.getStudentInfo({ type, id }).then((response) => {
+        commit('SET_STUDENT_INFO', response.data)
+    })
+}

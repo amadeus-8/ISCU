@@ -180,8 +180,9 @@ class AdviserController extends Controller
 
         $students = DB::table('student_courses')
             ->join('subjects', 'student_courses.subject_id', 'subjects.id')
-            ->join('users', 'users.id', 'student_courses.teacher_id')
+            ->join('users', 'users.id', 'student_courses.user_id')
             ->where('status', $type)
+            ->groupBy('users.id')
             ->get();
 
         $results = [];
@@ -189,14 +190,53 @@ class AdviserController extends Controller
         foreach ($students as $student) {
             $results[] = [
                 'id' => $student->id,
-                'teacher' => $student->firstname . " " . $student->lastname,
-                'course' => $student->title_ru,
-                'credits' => $student->ects_credits,
-                'status' => $student->status,
+                'firstname' => $student->firstname,
+                'lastname' => $student->lastname
+//                'course' => $student->title_ru,
+//                'credits' => $student->ects_credits,
+//                'status' => $student->status,
             ];
         }
 
         return response()->json($results);
+    }
+
+    public function getStudentInfo(Request $request)
+    {
+        $type = $request->type;
+
+        $student_id = $request->id;
+
+        $student = DB::table('users')
+            ->where('id', $student_id)
+            ->first();
+
+        $courses = DB::table('student_courses')
+            ->join('subjects', 'student_courses.subject_id', 'subjects.id')
+            ->join('users', 'users.id', 'student_courses.teacher_id')
+            ->where('status', $type)
+            ->where('student_courses.user_id', $student_id)
+            ->get();
+
+        $results = [];
+
+        foreach ($courses as $course) {
+            $results[] = [
+                'id' => $course->id,
+                'teacher' => $course->firstname . " " . $course->lastname,
+                'name' => $course->title_ru,
+                'credits' => $course->ects_credits,
+                'status' => $course->status,
+            ];
+        }
+
+        $response = [
+            'firstname' => $student->firstname,
+            'lastname' => $student->lastname,
+            'courses' => $results
+        ];
+
+        return response()->json($response);
     }
 
     public function test()

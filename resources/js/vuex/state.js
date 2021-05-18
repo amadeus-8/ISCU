@@ -13,4 +13,5 @@ export default {
     pending_students: [],
     confirmed_students: [],
     waiting_students: [],
+    studentInfo: {}
 }

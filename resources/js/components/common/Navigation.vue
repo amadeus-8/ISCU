@@ -1,5 +1,6 @@
 <template>
-    <div class="mt-3 custom-nav" v-if="currentUser.role === 'ADVISER'">
+    <div class="mt-3 custom-nav"
+         v-if="currentUser.role === 'ADVISER'">
         <div v-for="(link, index) in links"
              :key="index">
             <router-link :to="link.path"
@@ -18,11 +19,11 @@ export default {
             links: [
                 {
                     name: "Wating list",
-                    path: '/waiting-list'
+                    path: '/waiting'
                 },
                 {
                     name: 'In progress',
-                    path: '/in-progress',
+                    path: '/pending',
                 },
                 {
                     name: 'Confirmed',
