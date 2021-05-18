@@ -41,3 +41,7 @@ export const GET_WAITING_STUDENTS = (state) => {
 export const GET_STUDENT_INFO = (state) => {
     return state.studentInfo
 }
+
+export const GET_TOTAL_CREDITS = (state) => {
+    return state.total_credits
+}

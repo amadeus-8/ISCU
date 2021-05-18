@@ -13,5 +13,6 @@ export default {
     pending_students: [],
     confirmed_students: [],
     waiting_students: [],
-    studentInfo: {}
+    studentInfo: {},
+    total_credits: 0,
 }

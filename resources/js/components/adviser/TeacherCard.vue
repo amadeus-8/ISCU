@@ -19,7 +19,7 @@
 <!--            </div>-->
             <div>
                 <span class="d-inline-block p-2">Количество студентов:</span>
-                <span class="d-inline-block p-2">100</span>
+                <span class="d-inline-block p-2">{{ teacher.total_students }}</span>
             </div>
         </div>
     </div>

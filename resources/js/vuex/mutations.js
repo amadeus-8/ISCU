@@ -60,3 +60,7 @@ export const SET_USER = (state, payload) => {
 export const SET_STUDENT_INFO = (state, payload) => {
     state.studentInfo = payload
 }
+
+export const SET_TOTAL_CREDITS = (state, payload) => {
+    state.total_credits = payload
+}

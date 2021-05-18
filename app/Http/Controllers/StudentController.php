@@ -47,16 +47,25 @@ class StudentController extends Controller
 
         $results = [];
 
+        $total_credits = 0;
+
         foreach ($courses as $course) {
+            $total_credits = $total_credits + $course->ects_credits;
             $results[] = [
                 'id' => $course->id,
                 'teacher_name' => $course->firstname . " " . $course->lastname,
                 'course_name' => $course->title_ru,
                 'credits' => $course->ects_credits,
                 'status' => $course->status,
+                'total_students' => rand(20, 50)
             ];
         }
 
-        return response()->json($results);
+        $result = [
+            'total_credits' => $total_credits,
+            'student_courses' => $results
+        ];
+
+        return response()->json($result);
     }
 }

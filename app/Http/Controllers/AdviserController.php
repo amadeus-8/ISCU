@@ -30,7 +30,8 @@ class AdviserController extends Controller
                 'last_name'       => $teacher->lastname,
                 'patronymic'      => $teacher->patronymic,
                 'academic_rank'   => (new AcademicRank())->getRank($teacher->id),
-                'academic_degree' => (new AcademicDegree())->getDegree($teacher->id)
+                'academic_degree' => (new AcademicDegree())->getDegree($teacher->id),
+                'total_students' => rand(20, 50)
             ];
         }
 
