@@ -1,5 +1,4 @@
 import {adviserAPI, authAPI, studentAPI} from "../api/api"
-import {saveAs} from 'file-saver'
 
 export const login = ({ commit }, credentials) => {
     authAPI.login(credentials).then(response => {
