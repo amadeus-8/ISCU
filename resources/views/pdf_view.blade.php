@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PDF Demo in Laravel 7</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: DejaVu Sans;
+        }
+    </style>
 </head>
 <body>
 <h4>{{ $data['firstname'] . " " . $data['lastname'] }}</h4>

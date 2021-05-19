@@ -9,7 +9,9 @@ use App\Models\RoleUser;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Barryvdh\DomPDF\Facade as PDF;
 
@@ -280,8 +282,16 @@ class AdviserController extends Controller
         view()->share('data', $data);
         $pdf = PDF::loadView('pdf_view', $data)->setPaper('a4', 'portrait');
 
-        // download PDF file with download method
-        return $pdf->download('pdf_file.pdf');
+        $content = $pdf->save('pdf_file.pdf', 'UTF-8')->download('pdf_file.pdf')->getOriginalContent();
+
+        Storage::put('public/pdf/name.pdf', $content);
+
+        return Storage::get('public/pdf/name.pdf');
+
+//        return response()->json([
+//            'pdf' => base64_encode($content),
+//            'filename' => 'name.pdf'
+//        ]);
     }
 
     public function test()

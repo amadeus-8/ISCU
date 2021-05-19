@@ -13,6 +13,8 @@
                     class="btn btn-primary">Скачать pdf</button>
 <!--            <a :href="downloadPdfUri"-->
 <!--                    class="btn btn-primary">Скачать pdf</a>-->
+<!--            <button @click=""-->
+<!--                    class="btn btn-primary">Скачать pdf</button>-->
         </div>
     </div>
 </template>
@@ -30,7 +32,6 @@ export default {
         }
     },
     mounted() {
-        console.log(this.$route)
         this.getStudentInfo({ type: this.$route.name.substring(0, this.$route.name.search('-')), id: this.$route.params['id'] })
     },
     computed: {
