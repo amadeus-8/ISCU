@@ -1,8 +1,11 @@
 <template>
     <div class="card-1">
-        <!--        <div class="d-flex justify-content-end w-100">-->
-        <!--            X-->
-        <!--        </div>-->
+                <div class="d-flex justify-content-end w-100">
+                    <span class="times"
+                          type="button"
+                          data-bs-toggle="modal"
+                          data-bs-target="#confirmModal">&times;</span>
+                </div>
         <div>
             <div>
                 <span class="d-inline-block p-2">ФИО учителя:</span>
@@ -26,12 +29,15 @@
                 <span class="d-inline-block p-2">{{ studentCourse.total_students }}</span>
             </div>
         </div>
+        <Modal :courseId="studentCourse.id" />
     </div>
 </template>
 
 <script>
+import Modal from "../common/Modal";
 export default {
     name: "StudentCoursesCard",
+    components: {Modal},
     props: {
         studentCourse: Object
     }
@@ -39,5 +45,8 @@ export default {
 </script>
 
 <style scoped>
-
+    .times {
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
 </style>

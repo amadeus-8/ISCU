@@ -81,12 +81,18 @@ export const getStudentInfo = ({ commit }, { type, id}) => {
 
 export const downloadPDF = ({}, { type, id}) => {
     adviserAPI.downloadPDF({ type, id }).then((response) => {
-        // const blob = new Blob([atob(response.data.pdf)], {'type': 'application/pdf'})
-        // saveAs(blob, response.data.filename)
         let blob = new Blob([response.data], { type: 'application/pdf' })
         let link = document.createElement('a')
         link.href = window.URL.createObjectURL(blob)
         link.download = 'Отчет по студенту.pdf'
         link.click()
+    })
+}
+
+export const deleteCourse = ({ commit }, id) => {
+    studentAPI.deleteCourse(id).then(response => {
+        if(response.data.success) {
+            location.reload()
+        }
     })
 }

@@ -22,7 +22,6 @@
         <td>ФИО учителя</td>
         <td>Наименование предмета</td>
         <td>Количество кредитов</td>
-{{--        <td>Статус</td>--}}
     </tr>
     </thead>
     <tbody>
@@ -32,7 +31,6 @@
             <td>{{ $course['teacher'] }}</td>
             <td>{{ $course['name'] }}</td>
             <td>{{ $course['credits'] }}</td>
-{{--            <td>{{ $course->status === 'pending' ? 'Ожидает подтверждения' : $course->status === 'confirmed' ? 'Подтвержден' : 'В ожидании'}}</td>--}}
         </tr>
     @endforeach
     </tbody>

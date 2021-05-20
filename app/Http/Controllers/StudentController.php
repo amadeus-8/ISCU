@@ -42,8 +42,16 @@ class StudentController extends Controller
             ->join('subjects', 'student_courses.subject_id', 'subjects.id')
             ->join('users', 'users.id', 'student_courses.teacher_id')
             ->where('user_id', $request->id)
-            ->groupBy('student_courses.subject_id')
-            ->get();
+            ->get(
+                [
+                    'student_courses.id',
+                    'student_courses.status',
+                    'subjects.title_ru',
+                    'subjects.ects_credits',
+                    'users.firstname',
+                    'users.lastname'
+                ]
+            );
 
         $results = [];
 
@@ -64,6 +72,20 @@ class StudentController extends Controller
         $result = [
             'total_credits' => $total_credits,
             'student_courses' => $results
+        ];
+
+        return response()->json($result);
+    }
+
+    public function deleteCourse(Request $request) {
+        $course_id = $request->id;
+
+        DB::table('student_courses')
+            ->where('id', $course_id)
+            ->delete();
+
+        $result = [
+            'success' => true,
         ];
 
         return response()->json($result);

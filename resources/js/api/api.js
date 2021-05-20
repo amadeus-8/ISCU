@@ -98,5 +98,8 @@ export const studentAPI = {
     },
     getStudentCourses(id) {
         return axiosInstance.get(`/student/courses/${id}`)
+    },
+    deleteCourse(id) {
+        return axiosInstance.post(`/student/course/delete`, {id})
     }
 }

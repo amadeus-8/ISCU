@@ -287,15 +287,5 @@ class AdviserController extends Controller
         Storage::put('public/pdf/name.pdf', $content);
 
         return Storage::get('public/pdf/name.pdf');
-
-//        return response()->json([
-//            'pdf' => base64_encode($content),
-//            'filename' => 'name.pdf'
-//        ]);
-    }
-
-    public function test()
-    {
-        return (new User())->getUser();
     }
 }
