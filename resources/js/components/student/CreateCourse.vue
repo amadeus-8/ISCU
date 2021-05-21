@@ -21,9 +21,7 @@
         </div>
         <div class="mt-3">
             <button class="btn btn-primary me-2"
-                    @click="createStudentCourse({course, type: 'save'})">Сохранить</button>
-            <button class="btn btn-primary"
-                    @click="createStudentCourse({course, type: 'submit'})">Отправить</button>
+                    @click="createStudentCourse()">Сохранить</button>
         </div>
     </div>
 </template>
@@ -60,9 +58,6 @@ import {mapActions, mapGetters} from "vuex"
             }
         },
         created() {
-            // if(!this.teachers.length) {
-            //     this.getTeachers()
-            // }
             if(!this.courses.length) {
                 this.getCourses()
             }

@@ -73,9 +73,6 @@
                 //     })
             }
         },
-        updated() {
-
-        },
         computed: {
             ...mapGetters(['GET_ERROR']),
             errorMessage() {

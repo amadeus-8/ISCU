@@ -96,8 +96,11 @@ export const studentAPI = {
     createCourse({course, type}) {
         return axiosInstance.post('/student/course/create', {course, type})
     },
-    getStudentCourses(id) {
-        return axiosInstance.get(`/student/courses/${id}`)
+    submitCourses(courses) {
+        return axiosInstance.post('/student/course/submit', {courses})
+    },
+    getStudentCourses({ id, status }) {
+        return axiosInstance.get(`/student/courses/${id}/${status}`)
     },
     deleteCourse(id) {
         return axiosInstance.post(`/student/course/delete`, {id})

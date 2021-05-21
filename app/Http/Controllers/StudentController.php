@@ -37,11 +37,29 @@ class StudentController extends Controller
         }
     }
 
+    public function submitCourses(Request  $request) {
+        $courses = $request->courses;
+
+        DB::table('student_courses')
+            ->whereIn('id', $courses)
+            ->update(['status' =>'waiting']);
+
+        $result = [
+            'success' => true
+        ];
+
+        return response()->json($result);
+    }
+
     public function getStudentCourses(Request $request) {
+        $user_id = $request->id;
+        $status = $request->status ?? 'pending';
+
         $courses = DB::table('student_courses')
             ->join('subjects', 'student_courses.subject_id', 'subjects.id')
             ->join('users', 'users.id', 'student_courses.teacher_id')
-            ->where('user_id', $request->id)
+            ->where('user_id', $user_id)
+            ->where('student_courses.status', $status)
             ->get(
                 [
                     'student_courses.id',
@@ -49,7 +67,8 @@ class StudentController extends Controller
                     'subjects.title_ru',
                     'subjects.ects_credits',
                     'users.firstname',
-                    'users.lastname'
+                    'users.lastname',
+                    'student_courses.status',
                 ]
             );
 

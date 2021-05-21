@@ -34,6 +34,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     Route::get('/students/{type}/{id}', [AdviserController::class, 'getStudentInfo']);
     Route::get('/student-courses/pdf/{type}/{id}', [AdviserController::class, 'createPDF']);
     Route::post('/student/course/create', [StudentController::class, 'createCourse']);
+    Route::post('/student/course/submit', [StudentController::class, 'submitCourses']);
     Route::post('/student/course/delete', [StudentController::class, 'deleteCourse']);
-    Route::get('/student/courses/{id}', [StudentController::class, 'getStudentCourses']);
+    Route::get('/student/courses/{id}/{status}', [StudentController::class, 'getStudentCourses']);
 });

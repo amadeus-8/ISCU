@@ -48,8 +48,8 @@ export const createStudentCourse = ({}, { course, type }) => {
     })
 }
 
-export const getStudentCourses = ({commit}, id) => {
-    studentAPI.getStudentCourses(id).then(response => {
+export const getStudentCourses = ({commit}, { id, status }) => {
+    studentAPI.getStudentCourses({ id, status }).then(response => {
         commit('SET_STUDENT_COURSES', response.data.student_courses)
         commit('SET_TOTAL_CREDITS', response.data.total_credits)
     })
@@ -94,5 +94,11 @@ export const deleteCourse = ({ commit }, id) => {
         if(response.data.success) {
             location.reload()
         }
+    })
+}
+
+export const submitCourses = ({}, courses) => {
+    studentAPI.submitCourses(courses).then(response => {
+        location.reload()
     })
 }
