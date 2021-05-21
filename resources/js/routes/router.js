@@ -62,9 +62,25 @@ const routes = [
         }
     },
     {
+        path: '/pending/:id',
+        name: 'confirmed-student',
+        component: StudentInfo,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
         path: '/others',
         name: 'others',
         component: Others,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/pending/:id',
+        name: 'others-student',
+        component: StudentInfo,
         meta: {
             requiresAuth: true
         }

@@ -38,6 +38,10 @@ export const GET_WAITING_STUDENTS = (state) => {
     return state.waiting_students
 }
 
+export const GET_OTHER_STUDENTS = (state) => {
+    return state.other_students
+}
+
 export const GET_STUDENT_INFO = (state) => {
     return state.studentInfo
 }

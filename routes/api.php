@@ -30,6 +30,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     Route::post('/student/create', [AdviserController::class, 'createStudent']);
     Route::post('/teacher/create', [AdviserController::class, 'createTeacher']);
     Route::post('/adviser/course/create', [AdviserController::class, 'createCourse']);
+    Route::post('/adviser/courses/confirm', [AdviserController::class, 'confirmCourses']);
     Route::get('/students/{type}', [AdviserController::class, 'getStudentsList']);
     Route::get('/students/{type}/{id}', [AdviserController::class, 'getStudentInfo']);
     Route::get('/student-courses/pdf/{type}/{id}', [AdviserController::class, 'createPDF']);

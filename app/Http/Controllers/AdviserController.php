@@ -182,12 +182,35 @@ class AdviserController extends Controller
     {
         $type = $request->type;
 
-        $students = DB::table('student_courses')
-            ->join('subjects', 'student_courses.subject_id', 'subjects.id')
-            ->join('users', 'users.id', 'student_courses.user_id')
-            ->where('status', $type)
-            ->groupBy('users.id')
-            ->get();
+        if($type !== 'others') {
+            $students = DB::table('student_courses')
+                ->join('subjects', 'student_courses.subject_id', 'subjects.id')
+                ->join('users', 'users.id', 'student_courses.user_id')
+                ->where('student_courses.status', $type)
+                ->groupBy('users.id')
+                ->get(
+                    [
+                        'users.id',
+                        'student_courses.status',
+                        'users.firstname',
+                        'users.lastname',
+                    ]
+                );
+        }
+        else {
+            $students = DB::table('student_courses')
+                ->join('subjects', 'student_courses.subject_id', 'subjects.id')
+                ->join('users', 'users.id', 'student_courses.user_id')
+                ->groupBy('users.id')
+                ->get(
+                    [
+                        'users.id',
+                        'student_courses.status',
+                        'users.firstname',
+                        'users.lastname',
+                    ]
+                );
+        }
 
         $results = [];
 
@@ -196,9 +219,6 @@ class AdviserController extends Controller
                 'id' => $student->id,
                 'firstname' => $student->firstname,
                 'lastname' => $student->lastname
-//                'course' => $student->title_ru,
-//                'credits' => $student->ects_credits,
-//                'status' => $student->status,
             ];
         }
 
@@ -215,29 +235,51 @@ class AdviserController extends Controller
             ->where('id', $student_id)
             ->first();
 
+//        $courses = DB::table('student_courses')
+//            ->join('subjects', 'student_courses.subject_id', 'subjects.id')
+//            ->join('users', 'users.id', 'student_courses.teacher_id')
+//            ->where('status', $type)
+//            ->where('student_courses.user_id', $student_id)
+//            ->get();
+
         $courses = DB::table('student_courses')
             ->join('subjects', 'student_courses.subject_id', 'subjects.id')
             ->join('users', 'users.id', 'student_courses.teacher_id')
-            ->where('status', $type)
-            ->where('student_courses.user_id', $student_id)
-            ->get();
+            ->where('user_id', $student_id)
+            ->where('student_courses.status', $type)
+            ->get(
+                [
+                    'student_courses.id',
+                    'student_courses.status',
+                    'subjects.title_ru',
+                    'subjects.ects_credits',
+                    'users.firstname',
+                    'users.lastname',
+                    'student_courses.status',
+                ]
+            );
 
         $results = [];
 
+        $total_credits = 0;
+
         foreach ($courses as $course) {
+            $total_credits = $total_credits + $course->ects_credits;
             $results[] = [
                 'id' => $course->id,
                 'teacher' => $course->firstname . " " . $course->lastname,
                 'name' => $course->title_ru,
                 'credits' => $course->ects_credits,
                 'status' => $course->status,
+                'total_students' => rand(20, 50)
             ];
         }
 
         $response = [
             'firstname' => $student->firstname,
             'lastname' => $student->lastname,
-            'courses' => $results
+            'total_credits' => $total_credits,
+            'courses' => $results,
         ];
 
         return response()->json($response);
@@ -287,5 +329,19 @@ class AdviserController extends Controller
         Storage::put('public/pdf/name.pdf', $content);
 
         return Storage::get('public/pdf/name.pdf');
+    }
+
+    public function confirmCourses(Request  $request) {
+        $courses = $request->courses;
+
+        DB::table('student_courses')
+            ->whereIn('id', $courses)
+            ->update(['status' =>'confirmed']);
+
+        $result = [
+            'success' => true
+        ];
+
+        return response()->json($result);
     }
 }

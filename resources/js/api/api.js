@@ -89,7 +89,10 @@ export const adviserAPI = {
     },
     downloadPDF({ type, id}) {
         return axiosInstance.get(`/student-courses/pdf/${type}/${id}`, {responseType: 'arraybuffer'})
-    }
+    },
+    confirmCourses(courses) {
+        return axiosInstance.post('/adviser/courses/confirm', {courses})
+    },
 }
 
 export const studentAPI = {

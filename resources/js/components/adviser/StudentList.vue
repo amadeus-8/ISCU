@@ -22,7 +22,7 @@ export default {
         ...mapActions(['getStudentsList']),
     },
     computed: {
-        ...mapGetters(['GET_PENDING_STUDENTS', 'GET_CONFIRMED_STUDENTS', 'GET_WAITING_STUDENTS']),
+        ...mapGetters(['GET_PENDING_STUDENTS', 'GET_CONFIRMED_STUDENTS', 'GET_WAITING_STUDENTS', 'GET_OTHER_STUDENTS']),
         students() {
             switch (this.type) {
                 case 'pending':
@@ -31,6 +31,8 @@ export default {
                     return this.GET_WAITING_STUDENTS
                 case 'confirmed':
                     return this.GET_CONFIRMED_STUDENTS
+                case 'others':
+                    return this.GET_OTHER_STUDENTS
                 default:
                     break
             }

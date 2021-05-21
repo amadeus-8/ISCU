@@ -1,5 +1,7 @@
 <template>
-    <div class="card-1">
+    <div class="card-1 pointer"
+         :class="$parent.selectedCourses.includes(course.id) ? 'selected' : '' "
+         @click="$parent.selectCourse(course.id)">
         <div>
             <span class="d-inline-block p-2">Название предмета:</span>
             <span class="d-inline-block p-2">{{ course.name }}</span>
@@ -27,3 +29,12 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.selected {
+  background-color: #E5E6E7;
+}
+.pointer {
+  cursor: pointer;
+}
+</style>

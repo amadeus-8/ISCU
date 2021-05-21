@@ -67,6 +67,9 @@ export const getStudentsList = ({commit}, type) => {
             case "waiting":
                 commit('SET_WAITING_STUDENTS', response.data)
                 break
+            case "others":
+                commit('SET_OTHER_STUDENTS', response.data)
+                break
             default:
                 break
         }
@@ -99,6 +102,12 @@ export const deleteCourse = ({ commit }, id) => {
 
 export const submitCourses = ({}, courses) => {
     studentAPI.submitCourses(courses).then(response => {
+        location.reload()
+    })
+}
+
+export const confirmCourses = ({}, courses) => {
+    adviserAPI.confirmCourses(courses).then(response => {
         location.reload()
     })
 }
