@@ -42,8 +42,8 @@ export const getTeachersById = ({ commit }, id) => {
     })
 }
 
-export const createStudentCourse = ({}, { course, type }) => {
-    studentAPI.createCourse({ course, type }).then(response => {
+export const createStudentCourse = ({}, course) => {
+    studentAPI.createCourse(course).then(response => {
         location.reload()
     })
 }
