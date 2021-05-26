@@ -43,7 +43,7 @@ export const createTeacher = ({}, teacher) => {
 }
 
 export const createCourse = ({}, course) => {
-    adviserAPI.createCourse(course, type).then((response) => {
+    adviserAPI.createCourse(course).then((response) => {
         if(response.data.success) {
             alert("Успешно создано")
         }

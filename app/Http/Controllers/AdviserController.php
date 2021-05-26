@@ -22,6 +22,7 @@ class AdviserController extends Controller
         $teachers = DB::table('users')
             ->join('role_user', 'users.id', 'role_user.user_id')
             ->where('role_user.role_id', '=', 3)
+            ->orderBy('created_at', 'DESC')
             ->get();
 
         $result = [];

@@ -24,7 +24,7 @@
                             <li @click="viewType = 'create-teacher'"><span class="dropdown-item">Учителя</span></li>
                             <li @click="viewType = 'create-course'"><span class="dropdown-item">Курс</span></li>
                             <li @click="viewType = 'create-student'"><span class="dropdown-item">Студента</span></li>
-                            <li @click="viewType = 'create-parent'"><span class="dropdown-item">Родителя</span></li>
+<!--                            <li @click="viewType = 'create-parent'"><span class="dropdown-item">Родителя</span></li>-->
                         </ul>
                     </div>
                 </div>
