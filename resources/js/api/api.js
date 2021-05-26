@@ -93,6 +93,12 @@ export const adviserAPI = {
     confirmCourses(courses) {
         return axiosInstance.post('/adviser/courses/confirm', {courses})
     },
+    deleteTeacher(id) {
+        return axiosInstance.post('/adviser/teacher/delete', {id})
+    },
+    deleteAdviserCourse(id) {
+        return axiosInstance.post('/adviser/course/delete', {id})
+    }
 }
 
 export const studentAPI = {

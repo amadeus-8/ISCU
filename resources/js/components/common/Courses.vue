@@ -60,15 +60,25 @@
                 <h4>Описание курса</h4>
                 <div>{{ course.description }}</div>
             </div>
+            <Modal :id="activeCourse"
+                   :type="'adviser-course'" />
+        </div>
+        <div class="mt-3 d-flex w-100 justify-content-end" v-if="user.role === 'ADVISER'">
+            <button class="btn btn-danger"
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#confirmModal">Удалить</button>
         </div>
     </div>
 </template>
 
 <script>
     import {mapGetters, mapActions} from 'vuex'
+    import Modal from "./Modal";
 
     export default {
         name: "Courses",
+        components: {Modal},
         data() {
             return {
                 activeCourse: 1
@@ -83,9 +93,12 @@
             }
         },
         computed: {
-            ...mapGetters(['GET_COURSES']),
+            ...mapGetters(['GET_COURSES', 'GET_CURRENT_USER']),
             courses() {
                 return this.GET_COURSES
+            },
+            user() {
+                return this.GET_CURRENT_USER
             }
         },
         methods: {

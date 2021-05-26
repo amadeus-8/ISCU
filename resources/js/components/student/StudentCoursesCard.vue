@@ -32,7 +32,8 @@
                 <span class="d-inline-block p-2">{{ studentCourse.total_students }}</span>
             </div>
         </div>
-        <Modal :courseId="studentCourse.id"/>
+        <Modal :id="studentCourse.id"
+               :type="'course'" />
     </div>
 </template>
 

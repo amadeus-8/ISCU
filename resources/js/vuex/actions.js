@@ -129,3 +129,15 @@ export const confirmCourses = ({}, courses) => {
         location.reload()
     })
 }
+
+export const deleteTeacher = ({}, id) => {
+    adviserAPI.deleteTeacher(id).then(response => {
+        location.reload()
+    })
+}
+
+export const deleteAdviserCourse = ({}, id) => {
+    adviserAPI.deleteAdviserCourse(id).then(response => {
+        location.reload()
+    })
+}

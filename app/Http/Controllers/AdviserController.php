@@ -345,4 +345,32 @@ class AdviserController extends Controller
 
         return response()->json($result);
     }
+
+    public function deleteTeacher(Request $request) {
+        $teacher_id = $request->id;
+
+        DB::table('users')
+            ->where('id', $teacher_id)
+            ->delete();
+
+        $result = [
+            'success' => true,
+        ];
+
+        return response()->json($result);
+    }
+
+    public function deleteCourse(Request $request) {
+        $course_id = $request->id;
+
+        DB::table('subjects')
+            ->where('id', $course_id)
+            ->delete();
+
+        $result = [
+            'success' => true,
+        ];
+
+        return response()->json($result);
+    }
 }

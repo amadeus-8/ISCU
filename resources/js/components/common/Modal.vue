@@ -11,7 +11,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <span>Вы уверены что хотите удалить предмет из списка?</span>
+                        <span>Вы уверены что хотите удалить?</span>
                     </div>
                     <div class="modal-footer">
                         <button type="button"
@@ -19,7 +19,16 @@
                                 data-bs-dismiss="modal">Отменить</button>
                         <button type="button"
                                 class="btn btn-danger"
-                                @click="deleteCourse(courseId)">Удалить</button>
+                                v-if="type === 'course'"
+                                @click="deleteCourse(id)">Удалить</button>
+                        <button type="button"
+                                class="btn btn-danger"
+                                v-if="type === 'teacher'"
+                                @click="deleteTeacher(id)">Удалить</button>
+                        <button type="button"
+                                class="btn btn-danger"
+                                v-if="type === 'adviser-course'"
+                                @click="deleteAdviserCourse(id)">Удалить</button>
                     </div>
                 </div>
             </div>
@@ -33,10 +42,11 @@ import {mapActions} from "vuex"
 export default {
     name: "Modal",
     props: {
-        courseId: Number
+        id: Number,
+        type: String,
     },
     methods: {
-        ...mapActions(['deleteCourse'])
+        ...mapActions(['deleteCourse', 'deleteTeacher', 'deleteAdviserCourse'])
     }
 }
 </script>
