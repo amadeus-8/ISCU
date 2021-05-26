@@ -20,19 +20,37 @@ export const getCourses = ({ commit }) => {
 
 export const createStudent = ({}, student) => {
     adviserAPI.createStudent(student).then((response) => {
-        alert(response.data.success)
+        if(response.data.success) {
+            alert("Успешно создано")
+        }
+        else {
+            alert("Произошла ошибка при создании")
+        }
+        location.reload()
     })
 }
 
 export const createTeacher = ({}, teacher) => {
     adviserAPI.createTeacher(teacher).then((response) => {
-        alert(response.data.success)
+        if(response.data.success) {
+            alert("Успешно создано")
+        }
+        else {
+            alert("Произошла ошибка при создании")
+        }
+        location.reload()
     })
 }
 
 export const createCourse = ({}, course) => {
     adviserAPI.createCourse(course, type).then((response) => {
-        alert(response.data.success)
+        if(response.data.success) {
+            alert("Успешно создано")
+        }
+        else {
+            alert("Произошла ошибка при создании")
+        }
+        location.reload()
     })
 }
 
