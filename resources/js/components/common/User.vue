@@ -12,6 +12,7 @@
                     <span class="user-info__title">{{ currentUser.lastname }}</span>
                 </p>
                 <p class="p-0 m-0" v-if="currentUser.course">{{ currentUser.course }} курс</p>
+                <p class="p-0 m-0" v-if="currentUser.group">{{ currentUser.group }}</p>
             </div>
         </div>
     </div>

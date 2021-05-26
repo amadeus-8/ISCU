@@ -1,0 +1,71 @@
+<?php
+
+namespace App\Console\Commands;
+
+use App\Models\User;
+use Illuminate\Console\Command;
+
+class UpdateGroups extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'update:groups';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Command description';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
+    {
+        $groups = ["ВТиПО", "ИС", "Финансы", "Журналистика", "СИБ", "Менеджмент", "Радиоэлектроника"];
+
+        date_default_timezone_set('Asia/Almaty');
+
+        $start_time = time();
+
+        $time_now = date("H:i:s", $start_time);
+
+        echo "Script started at: $time_now \n";
+
+        $users = User::all();
+
+        echo "Updating table... \n";
+
+        $i = 0;
+        foreach ($users as $user) {
+            $user->where('role', 'STUDENT')
+                ->update([
+                    'group' => $groups[$i] . "-" . "180" . rand(1, 9)
+                ]);
+            $i++;
+            if($i === 7) $i = 0;
+        }
+
+        $end_time = time();
+
+        $time_after = date("H:i:s", $end_time);
+
+        echo "Script ended at: $time_after \n";
+    }
+}
