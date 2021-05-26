@@ -52,14 +52,14 @@ class UpdateGroups extends Command
 
         echo "Updating table... \n";
 
-        $i = 0;
-        foreach ($users as $user) {
-            $user->where('role', 'STUDENT')
-                ->update([
-                    'group' => $groups[$i] . "-" . "180" . rand(1, 9)
-                ]);
-            $i++;
-            if($i === 7) $i = 0;
+        for($i = 0; $i < $users->count(); $i++) {
+            if(User::where('id', $i)->first() !== null) {
+                User::where('id', $i)
+                    ->where('role', 'STUDENT')
+                    ->update([
+                        'group' => $groups[array_rand($groups)] . "-" . "180" . rand(1, 9)
+                    ]);
+            }
         }
 
         $end_time = time();

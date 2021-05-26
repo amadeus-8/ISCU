@@ -50,11 +50,14 @@ class UpdateUsers extends Command
 
         echo "Updating table... \n";
 
-        foreach ($users as $user) {
-            $user->where('role', 'STUDENT')
-                ->update([
-                    'password' => bcrypt('12345678')
-                ]);
+        for ($i = 0; $i < $users->count(); $i++) {
+            if(User::where('id', $i)->first() !== null) {
+                User::where('id', $i)
+                    ->where('role', 'STUDENT')
+                    ->update([
+                        'password' => bcrypt('12345678')
+                    ]);
+            }
         }
 
         $end_time = time();
