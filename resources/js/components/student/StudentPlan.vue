@@ -8,7 +8,7 @@
         </div>
         <div class="d-flex justify-content-center w-100">
             <button class="btn btn-warning"
-                    :disabled="credits > 31"
+                    :disabled="credits > 25"
                     @click="createCourse = !createCourse">Добавить курс</button>
         </div>
         <CreateCourse v-if="createCourse" />
