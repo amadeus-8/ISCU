@@ -199,18 +199,28 @@ class AdviserController extends Controller
                 );
         }
         else {
-            $students = DB::table('student_courses')
-                ->join('subjects', 'student_courses.subject_id', 'subjects.id')
-                ->join('users', 'users.id', 'student_courses.user_id')
-                ->groupBy('users.id')
-                ->get(
-                    [
-                        'users.id',
-                        'student_courses.status',
-                        'users.firstname',
-                        'users.lastname',
-                    ]
-                );
+            $users = DB::table('student_courses')
+                ->groupBy('user_id')
+                ->pluck('user_id')
+                ->toArray();
+
+            $students = DB::table('users')
+                ->where('role', 'STUDENT')
+                ->whereNotIn('id', $users)
+                ->get();
+
+//            $students = DB::table('student_courses')
+//                ->join('subjects', 'student_courses.subject_id', 'subjects.id')
+//                ->join('users', 'users.id', 'student_courses.user_id')
+//                ->groupBy('users.id')
+//                ->get(
+//                    [
+//                        'users.id',
+//                        'student_courses.status',
+//                        'users.firstname',
+//                        'users.lastname',
+//                    ]
+//                );
         }
 
         $results = [];

@@ -3,6 +3,9 @@
         <div>
             Общее количество кредитов: {{ credits }}
         </div>
+        <div>
+            Допустимое количество кредитов: 30
+        </div>
         <div class="d-flex justify-content-center w-100">
             <button class="btn btn-warning"
                     :disabled="credits > 31"
