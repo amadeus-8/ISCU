@@ -18,39 +18,66 @@ export const getCourses = ({ commit }) => {
     })
 }
 
-export const createStudent = ({}, student) => {
+export const createStudent = ({ commit }, student) => {
     adviserAPI.createStudent(student).then((response) => {
         if(response.data.success) {
-            alert("Успешно создано")
+            commit('SET_SUCCESS', response.data.message)
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Успешно создано")
+            // location.reload()
         }
         else {
-            alert("Произошла ошибка при создании")
+            commit('SET_ERROR', 'Произошла ощибка')
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Произошла ошибка при создании")
         }
-        location.reload()
+        setTimeout(() => {
+            commit('SET_FLASH_ISVISIBLE', false)
+            location.reload()
+        }, 1000)
+        // location.reload()
     })
 }
 
-export const createTeacher = ({}, teacher) => {
+export const createTeacher = ({ commit }, teacher) => {
     adviserAPI.createTeacher(teacher).then((response) => {
         if(response.data.success) {
-            alert("Успешно создано")
+            commit('SET_SUCCESS', response.data.message)
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Успешно создано")
+            // location.reload()
         }
         else {
-            alert("Произошла ошибка при создании")
+            commit('SET_ERROR', 'Произошла ощибка')
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Произошла ошибка при создании")
         }
-        location.reload()
+        setTimeout(() => {
+            commit('SET_FLASH_ISVISIBLE', false)
+            location.reload()
+        }, 1000)
+        // location.reload()
     })
 }
 
-export const createCourse = ({}, course) => {
+export const createCourse = ({ commit }, course) => {
     adviserAPI.createCourse(course).then((response) => {
         if(response.data.success) {
-            alert("Успешно создано")
+            commit('SET_SUCCESS', response.data.message)
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Успешно создано")
+            // location.reload()
         }
         else {
-            alert("Произошла ошибка при создании")
+            commit('SET_ERROR', 'Произошла ощибка')
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Произошла ошибка при создании")
         }
-        location.reload()
+        setTimeout(() => {
+            commit('SET_FLASH_ISVISIBLE', false)
+            location.reload()
+        }, 1000)
+        // location.reload()
     })
 }
 
@@ -60,9 +87,24 @@ export const getTeachersById = ({ commit }, id) => {
     })
 }
 
-export const createStudentCourse = ({}, course) => {
+export const createStudentCourse = ({ commit }, course) => {
     studentAPI.createCourse(course).then(response => {
-        location.reload()
+        if(response.data.success) {
+            commit('SET_SUCCESS', response.data.message)
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Успешно создано")
+            // location.reload()
+        }
+        else {
+            commit('SET_ERROR', 'Произошла ощибка')
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Произошла ошибка при создании")
+        }
+        setTimeout(() => {
+            commit('SET_FLASH_ISVISIBLE', false)
+            location.reload()
+        }, 1000)
+        // location.reload()
     })
 }
 
@@ -113,31 +155,104 @@ export const downloadPDF = ({}, { type, id}) => {
 export const deleteCourse = ({ commit }, id) => {
     studentAPI.deleteCourse(id).then(response => {
         if(response.data.success) {
-            location.reload()
+            commit('SET_SUCCESS', response.data.message)
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Успешно создано")
+            // location.reload()
         }
+        else {
+            commit('SET_ERROR', 'Произошла ощибка')
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Произошла ошибка при создании")
+        }
+        setTimeout(() => {
+            commit('SET_FLASH_ISVISIBLE', false)
+            location.reload()
+        }, 1000)
+        // location.reload()
     })
 }
 
-export const submitCourses = ({}, courses) => {
+export const submitCourses = ({ commit }, courses) => {
     studentAPI.submitCourses(courses).then(response => {
-        location.reload()
+        if(response.data.success) {
+            commit('SET_SUCCESS', response.data.message)
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Успешно создано")
+            // location.reload()
+        }
+        else {
+            commit('SET_ERROR', 'Произошла ощибка')
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Произошла ошибка при создании")
+        }
+        setTimeout(() => {
+            commit('SET_FLASH_ISVISIBLE', false)
+            location.reload()
+        }, 1000)
+        // location.reload()
     })
 }
 
-export const confirmCourses = ({}, courses) => {
+export const confirmCourses = ({ commit }, courses) => {
     adviserAPI.confirmCourses(courses).then(response => {
-        location.reload()
+        if(response.data.success) {
+            commit('SET_SUCCESS', response.data.message)
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Успешно создано")
+            // location.reload()
+        }
+        else {
+            commit('SET_ERROR', 'Произошла ощибка')
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Произошла ошибка при создании")
+        }
+        setTimeout(() => {
+            commit('SET_FLASH_ISVISIBLE', false)
+            location.reload()
+        }, 1000)
+        // location.reload()
     })
 }
 
-export const deleteTeacher = ({}, id) => {
+export const deleteTeacher = ({ commit }, id) => {
     adviserAPI.deleteTeacher(id).then(response => {
-        location.reload()
+        if(response.data.success) {
+            commit('SET_SUCCESS', response.data.message)
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Успешно создано")
+            // location.reload()
+        }
+        else {
+            commit('SET_ERROR', 'Произошла ощибка')
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Произошла ошибка при создании")
+        }
+        setTimeout(() => {
+            commit('SET_FLASH_ISVISIBLE', false)
+            location.reload()
+        }, 1000)
+        // location.reload()
     })
 }
 
-export const deleteAdviserCourse = ({}, id) => {
+export const deleteAdviserCourse = ({ commit }, id) => {
     adviserAPI.deleteAdviserCourse(id).then(response => {
-        location.reload()
+        if(response.data.success) {
+            commit('SET_SUCCESS', response.data.message)
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Успешно создано")
+            // location.reload()
+        }
+        else {
+            commit('SET_ERROR', 'Произошла ощибка')
+            commit('SET_FLASH_ISVISIBLE', true)
+            // alert("Произошла ошибка при создании")
+        }
+        setTimeout(() => {
+            commit('SET_FLASH_ISVISIBLE', false)
+            location.reload()
+        }, 1000)
+        // location.reload()
     })
 }

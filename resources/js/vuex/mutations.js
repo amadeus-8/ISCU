@@ -68,3 +68,19 @@ export const SET_STUDENT_INFO = (state, payload) => {
 export const SET_TOTAL_CREDITS = (state, payload) => {
     state.total_credits = payload
 }
+
+export const SET_FLASH_ISVISIBLE = (state, payload) => {
+    state.flashIsVisible = payload
+}
+
+export const SET_ISERROR = (state, payload) => {
+    state.isError = payload
+}
+
+export const SET_ERROR = (state, payload) => {
+    state.error = payload
+}
+
+export const SET_SUCCESS = (state, payload) => {
+    state.success = payload
+}

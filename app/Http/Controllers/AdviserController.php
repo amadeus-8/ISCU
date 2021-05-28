@@ -113,7 +113,8 @@ class AdviserController extends Controller
                 $role->save();
 
                 return response()->json([
-                    'success' => true
+                    'success' => true,
+                    "message" => "Студент успешно создан"
                 ]);
             }
         }
@@ -147,7 +148,8 @@ class AdviserController extends Controller
                 $role->save();
 
                 return response()->json([
-                    'success' => true
+                    'success' => true,
+                    "message" => "Учитель успешно создан"
                 ]);
             }
         } else {
@@ -172,7 +174,8 @@ class AdviserController extends Controller
             $subject->save();
 
             return response()->json([
-                'success' => true
+                'success' => true,
+                "message" => "Курс успешно создан"
             ]);
         } else {
             return $validator->errors();
@@ -350,7 +353,8 @@ class AdviserController extends Controller
             ->update(['status' =>'confirmed']);
 
         $result = [
-            'success' => true
+            'success' => true,
+            "message" => "Курсы успешно подтверждены"
         ];
 
         return response()->json($result);
@@ -365,6 +369,7 @@ class AdviserController extends Controller
 
         $result = [
             'success' => true,
+            "message" => "Учитель успешно удален"
         ];
 
         return response()->json($result);
@@ -379,6 +384,7 @@ class AdviserController extends Controller
 
         $result = [
             'success' => true,
+            "message" => "Курс успешно удален"
         ];
 
         return response()->json($result);

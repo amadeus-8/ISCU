@@ -12,6 +12,7 @@
             </div>
         </div>
         <Preloader />
+        <FlashMessage />
     </div>
 </template>
 
@@ -20,6 +21,7 @@
     import Header from "./common/Header"
     import Sidebar from "./common/Sidebar"
     import Preloader from "./common/Preloader";
+    import FlashMessage from "./common/FlashMessage";
 
     export default {
         name: "App",
@@ -30,6 +32,7 @@
             }
         },
         components: {
+            FlashMessage,
             Preloader,
             Sidebar,
             Header

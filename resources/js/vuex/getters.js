@@ -14,6 +14,18 @@ export const GET_ERROR = (state) => {
     return state.error
 }
 
+export const GET_SUCCESS = (state) => {
+    return state.success
+}
+
+export const GET_FLASH_ISVISIBLE = (state) => {
+    return state.flashIsVisible
+}
+
+export const GET_ISERROR = (state) => {
+    return state.isError
+}
+
 export const GET_TEACHERS = (state) => {
     return state.teachers
 }

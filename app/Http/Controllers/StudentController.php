@@ -30,6 +30,7 @@ class StudentController extends Controller
 
             return response()->json([
                 'success' => true,
+                "message" => "Курс успешно создан"
 //                'course'  => $student_course,
             ]);
         } else {
@@ -45,7 +46,8 @@ class StudentController extends Controller
             ->update(['status' =>'waiting']);
 
         $result = [
-            'success' => true
+            'success' => true,
+            "message" => "Курс успешно отправлен"
         ];
 
         return response()->json($result);
@@ -105,6 +107,7 @@ class StudentController extends Controller
 
         $result = [
             'success' => true,
+            "message" => "Курс успешно удален"
         ];
 
         return response()->json($result);
