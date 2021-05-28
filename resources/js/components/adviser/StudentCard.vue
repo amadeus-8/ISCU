@@ -6,6 +6,13 @@
                 <span class="d-inline-block p-2">ФИО студента:</span>
                 <span class="d-inline-block p-2">{{ student.firstname + " " + student.lastname }}</span>
             </div>
+            <div>
+                <span class="d-inline-block p-2">Группа студента:</span>
+                <span class="d-inline-block p-2">{{ student.group }}</span>
+            </div>
+            <div>
+                <span class="d-inline-block p-2">Курс: {{ student.course }}</span>
+            </div>
         </div>
     </div>
 </template>

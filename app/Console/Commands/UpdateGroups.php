@@ -57,7 +57,8 @@ class UpdateGroups extends Command
                 User::where('id', $i)
                     ->where('role', 'STUDENT')
                     ->update([
-                        'group' => $groups[array_rand($groups)] . "-" . "180" . rand(1, 9)
+                        'group' => $groups[array_rand($groups)] . "-" . "180" . rand(1, 9),
+                        'course' => rand(1, 4)
                     ]);
             }
         }

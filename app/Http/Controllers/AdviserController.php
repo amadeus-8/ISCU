@@ -198,6 +198,8 @@ class AdviserController extends Controller
                         'student_courses.status',
                         'users.firstname',
                         'users.lastname',
+                        'users.group',
+                        'users.course'
                     ]
                 );
         }
@@ -232,7 +234,9 @@ class AdviserController extends Controller
             $results[] = [
                 'id' => $student->id,
                 'firstname' => $student->firstname,
-                'lastname' => $student->lastname
+                'lastname' => $student->lastname,
+                'group' => $student->group,
+                'course' => $student->course
             ];
         }
 
